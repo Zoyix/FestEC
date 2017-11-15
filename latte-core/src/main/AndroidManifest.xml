@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dianbin.latte" />
+    package="com.dianbin.latte">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:label="Latter"
+        android:supportsRtl="true" />
+</manifest>
