@@ -1,9 +1,12 @@
 package com.dianbin.latte.net;
 
+import android.content.Context;
+
 import com.dianbin.latte.net.callBack.IError;
 import com.dianbin.latte.net.callBack.IFailure;
 import com.dianbin.latte.net.callBack.IRequest;
 import com.dianbin.latte.net.callBack.ISuccess;
+import com.dianbin.latte.ui.LoaderStyle;
 
 import java.util.WeakHashMap;
 
@@ -15,13 +18,15 @@ import okhttp3.RequestBody;
  */
 
 public class RestClientBuilder {
-    private String mUrl;
+    private String mUrl = null;
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
-    private IRequest mIRequest;
-    private ISuccess mISuccess;
-    private IFailure mIFailure;
-    private IError mIError;
-    private RequestBody mIBody;
+    private IRequest mIRequest = null;
+    private ISuccess mISuccess = null;
+    private IFailure mIFailure = null;
+    private IError mIError = null;
+    private RequestBody mIBody = null;
+    private Context mContext = null;
+    private LoaderStyle mLoaderStyle = null;
 
     public RestClientBuilder() {
     }
@@ -68,8 +73,21 @@ public class RestClientBuilder {
         return this;
     }
 
-    public final RestClient build(){
-        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure, mIError,mIBody);
+    public final RestClientBuilder loader(Context context, LoaderStyle style) {
+        this.mContext = context;
+        this.mLoaderStyle = style;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallClipRotateIndicator;
+        return this;
+    }
+
+
+    public final RestClient build() {
+        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mIBody, mContext, mLoaderStyle);
     }
 
 

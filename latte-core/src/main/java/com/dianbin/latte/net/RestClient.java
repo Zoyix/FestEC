@@ -1,12 +1,14 @@
 package com.dianbin.latte.net;
 
-import android.widget.Switch;
+import android.content.Context;
 
 import com.dianbin.latte.net.callBack.IError;
 import com.dianbin.latte.net.callBack.IFailure;
 import com.dianbin.latte.net.callBack.IRequest;
 import com.dianbin.latte.net.callBack.ISuccess;
 import com.dianbin.latte.net.callBack.RequestCallbacks;
+import com.dianbin.latte.ui.LatteLoader;
+import com.dianbin.latte.ui.LoaderStyle;
 
 import java.util.WeakHashMap;
 
@@ -27,6 +29,8 @@ public class RestClient {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
     public RestClient(String url,
                       WeakHashMap<String, Object> params,
@@ -34,7 +38,9 @@ public class RestClient {
                       ISuccess success,
                       IFailure failure,
                       IError error,
-                      RequestBody body) {
+                      RequestBody body,
+                      Context context,
+                      LoaderStyle loaderStyle) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -42,6 +48,8 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loaderStyle;
     }
 
     public static RestClientBuilder builder() {
@@ -54,6 +62,10 @@ public class RestClient {
 
         if (REQUEST != null) {
             REQUEST.onRequestStart();
+        }
+
+        if (LOADER_STYLE !=null){
+            LatteLoader.showLoading(CONTEXT,LOADER_STYLE);
         }
 
         switch (method) {
@@ -80,7 +92,7 @@ public class RestClient {
     }
 
     private Callback<String> getRequestCallback(){
-        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE,ERROR);
+        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE,ERROR,LOADER_STYLE);
     }
 
     public final void get(){

@@ -1,0 +1,23 @@
+[1mdiff --git a/latte-core/build.gradle b/latte-core/build.gradle[m
+[1mindex b0475c9..2fb104a 100644[m
+[1m--- a/latte-core/build.gradle[m
+[1m+++ b/latte-core/build.gradle[m
+[36m@@ -47,4 +47,6 @@[m [mdependencies {[m
+     api 'com.squareup.okhttp3:okhttp:3.8.1'[m
+     api 'com.squareup.retrofit2:retrofit:2.3.0'[m
+     api 'com.squareup.retrofit2:converter-scalars:2.3.0'[m
+[32m+[m
+[32m+[m
+ }[m
+[1mdiff --git a/latte-core/src/main/java/com/dianbin/latte/net/callBack/RequestCallbacks.java b/latte-core/src/main/java/com/dianbin/latte/net/callBack/RequestCallbacks.java[m
+[1mindex cec207b..d599e7d 100644[m
+[1m--- a/latte-core/src/main/java/com/dianbin/latte/net/callBack/RequestCallbacks.java[m
+[1m+++ b/latte-core/src/main/java/com/dianbin/latte/net/callBack/RequestCallbacks.java[m
+[36m@@ -43,6 +43,7 @@[m [mpublic class RequestCallbacks implements Callback<String> {[m
+             FAILURE.onFailure();[m
+         }[m
+ [m
+[32m+[m[32m        //TODO 请求成功了不用调用？[m
+         if (REQUEST!=null){[m
+             REQUEST.onRequestEnd();[m
+         }[m
