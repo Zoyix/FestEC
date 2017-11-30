@@ -10,16 +10,25 @@ import java.util.HashMap;
 
 public final class Latte {
     public static Configurator init(Context context) {
-        getConfigurations().put(ConfigType.APPLICATION_CONFEXT.name(), context.getApplicationContext());
+        getConfigurations().put(ConfigKeys.APPLICATION_CONFEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
 
-    public static HashMap<String, Object> getConfigurations() {
+    public static HashMap<Object, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
     }
 
-    public static Context getApplication() {
-        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONFEXT.name());
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
+    }
+
+    public static <T> T getConfiguration(Object key) {
+        return getConfigurator().getConfiguration(key);
+    }
+
+
+    public static Context getApplicationContext() {
+        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONFEXT);
     }
 
 }

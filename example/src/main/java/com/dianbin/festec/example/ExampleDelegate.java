@@ -2,9 +2,11 @@ package com.dianbin.festec.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dianbin.latte.app.ConfigKeys;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.IError;
@@ -23,16 +25,18 @@ public class ExampleDelegate extends LatteDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
+        //TODO 为什么放在这里能运行
         testRestClient();
     }
 
     private void testRestClient() {
         RestClient.builder()
-                .url("http://news.baidu.com/")
+                .url("http://127.0.0.1/index")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        Log.d("HAHAHAHAHA", response);
                         Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
                     }
                 })
