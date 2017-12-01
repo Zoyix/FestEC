@@ -9,6 +9,8 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ui.launcher.LauncherHolderCreator;
+import com.dianbin.latte.ui.launcher.ScrollLauncherTag;
+import com.dianbin.latte.util.storage.LattePreference;
 
 import java.util.ArrayList;
 
@@ -16,12 +18,12 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/12/1.
  */
 
-public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener{
+public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener {
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
-    private static  final ArrayList<Integer> INTEGERS = new ArrayList<>();
+    private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
 
-    private void initBanner(){
+    private void initBanner() {
         INTEGERS.add(R.mipmap.launcher_01);
         INTEGERS.add(R.mipmap.launcher_02);
         INTEGERS.add(R.mipmap.launcher_03);
@@ -29,8 +31,8 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         INTEGERS.add(R.mipmap.launcher_05);
 
         mConvenientBanner
-                .setPages(new LauncherHolderCreator(),INTEGERS)
-                .setPageIndicator(new int[]{R.drawable.dot_normal,R.drawable.dot_focus})
+                .setPages(new LauncherHolderCreator(), INTEGERS)
+                .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(this)
                 .setCanLoop(false);
@@ -50,6 +52,9 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
     @Override
     public void onItemClick(int position) {
-
+        if (position == INTEGERS.size() - 1) {
+            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
+            //检查用户是否已经登录
+        }
     }
 }
