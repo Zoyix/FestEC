@@ -8,8 +8,8 @@ import com.dianbin.latte.net.callBack.IRequest;
 import com.dianbin.latte.net.callBack.ISuccess;
 import com.dianbin.latte.net.callBack.RequestCallbacks;
 import com.dianbin.latte.net.download.DownloadHandler;
-import com.dianbin.latte.ui.LatteLoader;
-import com.dianbin.latte.ui.LoaderStyle;
+import com.dianbin.latte.ui.loader.LatteLoader;
+import com.dianbin.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;
