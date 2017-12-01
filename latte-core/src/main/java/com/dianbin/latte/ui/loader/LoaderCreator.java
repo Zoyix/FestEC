@@ -1,4 +1,4 @@
-package com.dianbin.latte.ui;
+package com.dianbin.latte.ui.loader;
 
 import android.content.Context;
 
