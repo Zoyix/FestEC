@@ -27,11 +27,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.android.support:appcompat-v7:26.0.0-beta1'
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
-    testApi 'junit:junit:4.12'
     androidTestApi 'com.android.support.test:runner:0.5'
     androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'
+    testApi 'junit:junit:4.12'
+
+    //Android Support包
+    api 'com.android.support:support-v4:26.0.0'
+    api 'com.android.support:design:26.0.0'
+    api 'com.android.support:appcompat-v7:26.0.0-beta1'
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
     api project(':latte-annotations')
     //字体图标
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
