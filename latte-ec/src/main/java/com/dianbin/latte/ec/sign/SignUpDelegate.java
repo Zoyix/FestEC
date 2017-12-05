@@ -12,6 +12,7 @@ import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
+import com.dianbin.latte.util.log.LatteLogger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,17 +37,22 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if (checkFrom()){
-//            RestClient.builder()
-//                    .url("sign_up")
-//                    .params("","")
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//
-//                        }
-//                    })
-//                    .build()
-//                    .post();
+            RestClient.builder()
+                    .url("http://10.41.69.60:8080/RestServer/api/User_profile.php")
+                    .params("name",mName.toString())
+                    .params("email",mEmail.toString())
+                    .params("phone",mPhone.toString())
+                    .params("password",mPassword.toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE",response);
+                            SignHandler.onSignUp(response);
+                        }
+                    })
+                    .build()
+                    .post();
+
 
             Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
         }
