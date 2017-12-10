@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.dianbin.latte.app.ConfigKeys;
 import com.dianbin.latte.app.Latte;
+import com.dianbin.latte.wechat.callBacks.IWeChatSignInCallback;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -15,9 +16,10 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 public class LatteWeChat {
     //    Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
     //TODO 上面的打开为什么会报错？是不是不在方法里？
-    static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
-    static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
+    public static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
+    public static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
     private final IWXAPI WXAPI;
+    private IWeChatSignInCallback mSignInCallback = null;
 
     private static final class Holder {
         private static final LatteWeChat INSTANCE = new LatteWeChat();
@@ -35,6 +37,15 @@ public class LatteWeChat {
 
     public final IWXAPI getWXAPI() {
         return WXAPI;
+    }
+
+    public LatteWeChat onSignSuccess(IWeChatSignInCallback callback) {
+        this.mSignInCallback = callback;
+        return this;
+    }
+
+    public IWeChatSignInCallback getSignInCallback() {
+        return mSignInCallback;
     }
 
     public final void signIn() {

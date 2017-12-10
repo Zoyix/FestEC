@@ -23,6 +23,8 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugIntercepter("index", R.raw.test))
+                .withWeChatAppId("")
+                .withWeChatAppSecret("")
                 .configure();
 
         initStetho();
