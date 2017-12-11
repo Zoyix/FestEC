@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * Created by zhouyixin on 2017/12/9.
+ * Created by Administrator on 2017/12/8.
  */
 
 public class AppRegisterTemplate extends BroadcastReceiver {

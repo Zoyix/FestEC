@@ -4,7 +4,7 @@ import com.dianbin.latte.annotations.AppRegisterGenerator;
 import com.dianbin.latte.wechat.templates.AppRegisterTemplate;
 
 /**
- * Created by zhouyixin on 2017/12/9.
+ * Created by Administrator on 2017/12/8.
  */
 @AppRegisterGenerator(
         packageName = "com.dianbin.festec.example",

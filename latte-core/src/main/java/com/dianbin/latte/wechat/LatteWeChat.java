@@ -45,6 +45,7 @@ public class LatteWeChat {
     }
 
     public IWeChatSignInCallback getSignInCallback() {
+        //TODO 不用判断是否为null，就返回出去么？
         return mSignInCallback;
     }
 

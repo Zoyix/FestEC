@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
@@ -64,7 +65,7 @@ public class SignInDelegate extends LatteDelegate {
         LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
             @Override
             public void onSignInSuccess(String userInfo) {
-
+                Toast.makeText(getContext(), userInfo, Toast.LENGTH_LONG).show();
             }
         }).signIn();
     }

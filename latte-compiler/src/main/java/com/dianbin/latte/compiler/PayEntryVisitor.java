@@ -12,9 +12,10 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
 /**
- * Created by zhouyixin on 2017/12/9.
+ * Created by Administrator on 2017/12/8.
  */
 
+//TODO 不懂
 public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
     private Filer mFiler = null;
     private TypeMirror mTypeMirror = null;
@@ -24,6 +25,8 @@ public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void, V
         this.mFiler = filer;
     }
 
+
+    //这两个visit是注解时传入的参数
     @Override
     public Void visitString(String s, Void p) {
         mPackageName = s;
@@ -33,19 +36,19 @@ public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void, V
     @Override
     public Void visitType(TypeMirror t, Void p) {
         mTypeMirror = t;
-        generteJavaCode();
+        generateJavaCode();
         return p;
     }
 
-    private void generteJavaCode() {
-        final TypeSpec targeActivity =
+    private void generateJavaCode() {
+        final TypeSpec targetActivity =
                 TypeSpec.classBuilder("WXPayEntryActivity")
                         .addModifiers(Modifier.PUBLIC)
                         .addModifiers(Modifier.FINAL)
                         .superclass(TypeName.get(mTypeMirror))
                         .build();
 
-        final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targeActivity)
+        final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
                 .addFileComment("微信支付入口文件")
                 .build();
 
@@ -55,4 +58,5 @@ public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void, V
             e.printStackTrace();
         }
     }
+
 }

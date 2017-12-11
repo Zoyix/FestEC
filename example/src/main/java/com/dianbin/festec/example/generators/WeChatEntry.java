@@ -4,7 +4,7 @@ import com.dianbin.latte.annotations.EntryGenerator;
 import com.dianbin.latte.wechat.templates.WXEntryTemplate;
 
 /**
- * Created by zhouyixin on 2017/12/9.
+ * Created by Administrator on 2017/12/8.
  */
 
 @EntryGenerator(

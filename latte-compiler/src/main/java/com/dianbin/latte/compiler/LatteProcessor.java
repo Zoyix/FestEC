@@ -66,28 +66,31 @@ public class LatteProcessor extends AbstractProcessor {
             for (AnnotationMirror annotationMirror : annotationMirrors) {
                 final Map<? extends ExecutableElement, ? extends AnnotationValue> elementValues = annotationMirror.getElementValues();
 
-                for (Map.Entry<? extends ExecutableElement, ? extends AnnotationValue> entry : elementValues.entrySet()){
-                    entry.getValue().accept(visitor,null);
+                for (Map.Entry<? extends ExecutableElement, ? extends AnnotationValue> entry : elementValues.entrySet()) {
+                    entry.getValue().accept(visitor, null);
                 }
             }
         }
     }
 
-    private void generateEntryCode(RoundEnvironment env){
+
+    //TODO 不懂
+    private void generateEntryCode(RoundEnvironment env) {
         final EntryVisitor entryVisitor = new EntryVisitor();
         entryVisitor.setFiler(processingEnv.getFiler());
-        scan(env,EntryGenerator.class,entryVisitor);
+        scan(env, EntryGenerator.class, entryVisitor);
     }
 
-    private void generatePayEntryCode(RoundEnvironment env){
+    private void generatePayEntryCode(RoundEnvironment env) {
         final PayEntryVisitor payEntryVisitor = new PayEntryVisitor();
         payEntryVisitor.setFiler(processingEnv.getFiler());
-        scan(env,PayEntryGenerator.class,payEntryVisitor);
+        scan(env, PayEntryGenerator.class, payEntryVisitor);
     }
 
-    private void generateAppRegisterCode(RoundEnvironment env){
+    private void generateAppRegisterCode(RoundEnvironment env) {
         final AppRegisterVisitor appRegisterVisitor = new AppRegisterVisitor();
         appRegisterVisitor.setFiler(processingEnv.getFiler());
-        scan(env,AppRegisterGenerator.class,appRegisterVisitor);
+        scan(env, AppRegisterGenerator.class, appRegisterVisitor);
     }
+
 }
