@@ -1,4 +1,4 @@
-package com.dianbin.festec.example;
+package com.dianbin.fastec.example;
 
 import android.app.Application;
 

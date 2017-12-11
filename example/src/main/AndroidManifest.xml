@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.dianbin.festec.example">
+    package="com.dianbin.fastec.example">
 
     <application
-        android:name=".ExampleApp"
+        android:name="com.dianbin.fastec.example.ExampleApp"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ExampleActivity">
+        <activity android:name="com.dianbin.fastec.example.ExampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".wxapi.WXEntryActivity"
+        <activity android:name="com.dianbin.fastec.example.wxapi.WXEntryActivity"
             android:exported="true"
             android:label="微信回调"
             android:theme="@style/Theme.AppCompat.Translucent"

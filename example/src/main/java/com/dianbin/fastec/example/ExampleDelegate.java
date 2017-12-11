@@ -1,4 +1,4 @@
-package com.dianbin.festec.example;
+package com.dianbin.fastec.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dianbin.latte.app.ConfigKeys;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.IError;

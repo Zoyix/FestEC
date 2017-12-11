@@ -1,4 +1,4 @@
-package com.dianbin.festec.example.generators;
+package com.dianbin.fastec.example.generators;
 
 import com.dianbin.latte.annotations.AppRegisterGenerator;
 import com.dianbin.latte.wechat.templates.AppRegisterTemplate;

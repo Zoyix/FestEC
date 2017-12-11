@@ -1,4 +1,4 @@
-package com.dianbin.festec.example.generators;
+package com.dianbin.fastec.example.generators;
 
 import com.dianbin.latte.annotations.PayEntryGenerator;
 import com.dianbin.latte.wechat.templates.WXPayEntryTemplate;

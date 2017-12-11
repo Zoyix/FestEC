@@ -1,4 +1,4 @@
-package com.dianbin.festec.example;
+package com.dianbin.fastec.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,6 @@ import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.launcher.LauncherDelegate;
 import com.dianbin.latte.ec.sign.ISignListener;
 import com.dianbin.latte.ec.sign.SignInDelegate;
-import com.dianbin.latte.ec.sign.SignUpDelegate;
 import com.dianbin.latte.ui.launcher.ILauncherListener;
 import com.dianbin.latte.ui.launcher.OnLauncherFinishTag;
 
