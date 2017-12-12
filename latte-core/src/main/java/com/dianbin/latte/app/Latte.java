@@ -14,6 +14,7 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
+    //TODO 应该是已经被废弃
     public static HashMap<Object, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
     }

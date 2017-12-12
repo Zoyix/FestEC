@@ -18,4 +18,15 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!--TODO Background已经定义成了透明为什么还要设置windowIsTranslucent-->
+    <!--TODO android:windowAnimationStyle？android:colorBackgroundCacheHint？-->
+    <!--透明Activity-->
+    <style name="Theme.AppCompat.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
 </resources>

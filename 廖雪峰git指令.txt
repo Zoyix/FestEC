@@ -101,16 +101,12 @@ git fetch  更新remote索引,当远程的东西不同步时，类似刷新
 
 git push origin --delete dev   删除远程分支dev
 
-git push --force 强制提交当前分支到远程
-
 git show commit_id 根据commit id查看该提交具体修改了什么
 
 查看远程分支提交信息：1.使用fetch命令，将远程分支dev拉下来（不更新）
                         git fetch origin dev
                       2.切换到远程分支dev
                         git checkout origin/dev
-
-
 
 
 git  的每次提交都是基于前一次提交的

@@ -2,4 +2,6 @@
 
 ==greendao 数据持久化开源框架 7-3 04.00  http://coding.imooc.com/lesson/116.html#mid=5560
 
+==看过的源码，butterknife看过一部分 通过注解开发，继承AbstractProcessor类
+
 ==
