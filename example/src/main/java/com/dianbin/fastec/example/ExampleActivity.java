@@ -9,6 +9,7 @@ import com.dianbin.latte.activities.ProxyActivity;
 import com.dianbin.latte.app.Latte;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.launcher.LauncherDelegate;
+import com.dianbin.latte.ec.main.EcBottomDelegate;
 import com.dianbin.latte.ec.sign.ISignListener;
 import com.dianbin.latte.ec.sign.SignInDelegate;
 import com.dianbin.latte.ui.launcher.ILauncherListener;
@@ -46,8 +47,8 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag) {
             case SIGNED:
-                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-                startWithPop(new ExampleDelegate());
+//                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();
