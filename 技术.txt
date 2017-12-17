@@ -4,4 +4,6 @@
 
 ==看过的源码，butterknife看过一部分 通过注解开发，继承AbstractProcessor类
 
+==底部通用导航栏的封装 LinearLayout+FrameLayout
+
 ==

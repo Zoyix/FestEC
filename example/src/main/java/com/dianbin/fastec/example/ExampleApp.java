@@ -21,8 +21,8 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://127.0.0.1/")
-                .withInterceptor(new DebugIntercepter("index", R.raw.test))
+                .withApiHost("http://192.168.1.3:8080/RestServer/api/")
+                .withInterceptor(new DebugIntercepter("text", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
                 .configure();
