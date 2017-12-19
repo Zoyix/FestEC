@@ -6,4 +6,6 @@
 
 ==底部通用导航栏的封装 LinearLayout+FrameLayout
 
+==使用BaseRecyclerViewAdapterHelper开源库实现RecyclerView 10-4 00.36
+
 ==
