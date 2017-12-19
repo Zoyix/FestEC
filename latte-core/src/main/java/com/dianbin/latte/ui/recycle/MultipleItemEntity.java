@@ -23,9 +23,13 @@ public class MultipleItemEntity implements MultiItemEntity {
         FIELDS_REFERENCE.get().putAll(fields);
     }
 
+    public static MultipleEntityBuilder builder(){
+        return new MultipleEntityBuilder();
+    }
+
     @Override
     public int getItemType() {
-        //TODO 返回这个做什么？ITEM_TYPE是什么
+        //返回这个做什么？返回的数据是哪个类型的，选择相应的视图渲染
         return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);
     }
 

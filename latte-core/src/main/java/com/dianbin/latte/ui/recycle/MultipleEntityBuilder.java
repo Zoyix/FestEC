@@ -32,7 +32,7 @@ public class MultipleEntityBuilder {
         return this;
     }
 
-    public final MultiItemEntity build() {
+    public final MultipleItemEntity build() {
         return new MultipleItemEntity(FIELDS);
     }
 }
