@@ -8,10 +8,13 @@ import java.util.ArrayList;
 
 public abstract class DataConverter {
 
-    //TODO 这个类有什么用？
     protected final ArrayList<MultipleItemEntity> ENTITIES = new ArrayList<>();
     private String mJsonData = null;
 
+    /**
+     * 处理传进来的json数据转化为ArrayList<MultipleItemEntity>返回出来
+     * @return
+     */
     public abstract ArrayList<MultipleItemEntity> convert();
 
     public DataConverter setJsonData(String json) {

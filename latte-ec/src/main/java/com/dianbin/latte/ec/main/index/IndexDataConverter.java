@@ -24,7 +24,7 @@ public class IndexDataConverter extends DataConverter {
             final JSONObject data = dataArray.getJSONObject(i);
 
             final String imageUrl = data.getString("imageUrl");
-            final Short text = data.getShort("text");
+            final String text = data.getString("text");
             final Integer spanSize = data.getInteger("spanSize");
             final Integer id = data.getInteger("goodsId");
             final JSONArray banners = data.getJSONArray("banners");
@@ -52,7 +52,7 @@ public class IndexDataConverter extends DataConverter {
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.TEXT, text)
                     .setField(MultipleFields.IMAGE_URL, imageUrl)
-                    .setField(MultipleFields.BANNERS, banners)
+                    .setField(MultipleFields.BANNERS, bannerImages)
                     .build();
 
             ENTITIES.add(entity);
