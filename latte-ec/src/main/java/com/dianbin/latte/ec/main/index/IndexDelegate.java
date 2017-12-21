@@ -1,7 +1,9 @@
 package com.dianbin.latte.ec.main.index;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +17,7 @@ import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
+import com.dianbin.latte.ui.recycle.BaseDecoration;
 import com.dianbin.latte.ui.recycle.MultipleFields;
 import com.dianbin.latte.ui.recycle.MultipleItemEntity;
 import com.dianbin.latte.ui.refresh.RefreshHandler;
@@ -62,6 +65,8 @@ public class IndexDelegate extends BottomItemDelegate {
         //TODO 设置了4没用？？网格布局什么样的？
         final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
         mRecyclerView.setLayoutManager(manager);
+        //设置分割线
+        mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
     }
 
     @Override

@@ -8,4 +8,9 @@
 
 ==使用BaseRecyclerViewAdapterHelper开源库实现RecyclerView 10-4 00.36
 
+==使用Glide处理图片
+
+==在cmd中输入下面代码，能够疯狂点击屏幕测试
+adb shell monkey -p com.lcns.fmrt.test -s 500 -v 10000
+
 ==

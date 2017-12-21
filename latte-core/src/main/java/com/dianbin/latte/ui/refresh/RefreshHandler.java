@@ -24,6 +24,13 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
     private MultipleRecyclerAdapter mAdapter = null;
     private final DataConverter CONVERTER;
 
+    /**
+     *
+     * @param swipeRefreshLayout 下拉刷新 传入的是自己写的
+     * @param recyclerView 要被设置适配器的RecyclerView
+     * @param converter
+     * @param bean  //TODO 这个类用来干嘛？？没有被使用？
+     */
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout, RecyclerView recyclerView, DataConverter converter, PaginBean bean) {
         this.REFRESH_LAYOUT = swipeRefreshLayout;
         this.RECYCLEVIEW = recyclerView;
@@ -48,6 +55,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
     }
 
     public void firstPage(String url) {
+        //TODO 设置了有什么用？
         BEAN.setDelayed(1000);
         RestClient.builder()
                 .url(url)
