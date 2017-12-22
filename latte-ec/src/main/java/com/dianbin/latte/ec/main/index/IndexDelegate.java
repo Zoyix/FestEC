@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.dianbin.latte.delegates.bottom.BottomItemDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
+import com.dianbin.latte.ec.main.EcBottomDelegate;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
 import com.dianbin.latte.ui.recycle.BaseDecoration;
@@ -61,12 +62,14 @@ public class IndexDelegate extends BottomItemDelegate {
         mRefreshLayout.setProgressViewOffset(true, 50, 200);
     }
 
-    private void initRecycleView(){
+    private void initRecycleView() {
         //TODO 设置了4没用？？网格布局什么样的？
-        final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
         //设置分割线
-        mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
+        mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override
