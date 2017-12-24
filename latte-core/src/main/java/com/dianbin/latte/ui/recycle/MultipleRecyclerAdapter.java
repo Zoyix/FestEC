@@ -79,7 +79,6 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
         final String imageUrl;
         final ArrayList<String> bannerImages;
 
-
         switch (holder.getItemViewType()) {
             case ItemType.TEXT:
                 text = entity.getField(MultipleFields.TEXT);
@@ -118,7 +117,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     @Override
     public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-        //TODO SpanSize是啥
+        //SpanSize是啥 表示占据的大小，不能大于gridLayoutManager中设置的spanCount，否则报错
         return getData().get(position).getField(MultipleFields.SPAN_SIZE);
     }
 

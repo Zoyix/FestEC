@@ -63,11 +63,13 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
     private void initRecycleView() {
-        //TODO 设置了4没用？？网格布局什么样的？
+        //TODO 网格布局什么样的？
+        //4应该是每行共几份对应数据中的spanSize，即如果spanSize=4就代表占据整行，spanCount不能小于spanSize的最大值
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
         //设置分割线
         mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        //TODO 为什么得到的是EcBottomDelegate？
         final EcBottomDelegate ecBottomDelegate = getParentDelegate();
         mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
