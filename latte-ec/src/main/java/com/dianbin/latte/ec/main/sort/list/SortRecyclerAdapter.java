@@ -3,11 +3,12 @@ package com.dianbin.latte.ec.main.sort.list;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 
+import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.main.sort.SortDelegate;
+import com.dianbin.latte.ec.main.sort.content.ContentDelegate;
 import com.dianbin.latte.ui.recycle.ItemType;
 import com.dianbin.latte.ui.recycle.MultipleFields;
 import com.dianbin.latte.ui.recycle.MultipleItemEntity;
@@ -22,12 +23,12 @@ import java.util.List;
 
 public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
-    private final SortDelegate DELEFATE;
+    private final SortDelegate DELEGATE;
     private int mPrePosition = 0;
 
     protected SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
         super(data);
-        this.DELEFATE = delegate;
+        this.DELEGATE = delegate;
         //添加垂直菜单布局
         addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_vertical_menu_list);
     }
@@ -46,17 +47,18 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                     @Override
                     public void onClick(View view) {
                         final int currentPosition = holder.getAdapterPosition();
-                        if (mPrePosition != currentPosition){
+                        if (mPrePosition != currentPosition) {
                             //还原上一个
-                            getData().get(mPrePosition).setField(MultipleFields.TAG,false);
+                            getData().get(mPrePosition).setField(MultipleFields.TAG, false);
                             notifyItemChanged(mPrePosition);
 
                             //更新选中的item
-                            entity.setField(MultipleFields.TAG,true);
+                            entity.setField(MultipleFields.TAG, true);
                             notifyItemChanged(currentPosition);
                             mPrePosition = currentPosition;
 
                             final int contentId = getData().get(currentPosition).getField(MultipleFields.ID);
+                            showContent(contentId);
                         }
                     }
                 });
@@ -79,4 +81,18 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                 break;
         }
     }
+
+    private void showContent(int contentId) {
+        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+        swithContent(delegate);
+    }
+
+    private void swithContent(ContentDelegate delegate) {
+        //TODO 如果默认不显示第一页，是否会得到null？
+        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        if (contentDelegate != null) {
+            contentDelegate.replaceFragment(delegate, false);
+        }
+    }
+
 }

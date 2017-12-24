@@ -22,6 +22,7 @@
         android:layout_toRightOf="@+id/view_line"
         android:textColor="@android:color/black"
         tools:ignore="RtlHardcoded" />
+    <!--TODO tools:ignore="RtlHardcoded" 是什么？？ -->
 
     <View
         android:layout_width="match_parent"
