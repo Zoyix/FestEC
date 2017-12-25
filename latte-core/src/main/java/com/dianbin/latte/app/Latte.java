@@ -1,8 +1,10 @@
 package com.dianbin.latte.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
+
 
 /**
  * Created by Administrator on 2017/11/13.
@@ -30,6 +32,10 @@ public final class Latte {
 
     public static Context getApplicationContext() {
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONFEXT);
+    }
+
+    public static Handler getHandler() {
+        return getConfiguration(ConfigKeys.HANDLER);
     }
 
 }

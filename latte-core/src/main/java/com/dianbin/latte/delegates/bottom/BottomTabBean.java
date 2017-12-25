@@ -4,6 +4,9 @@ package com.dianbin.latte.delegates.bottom;
  * Created by Administrator on 2017/12/12.
  */
 
+/**
+ * 底部导航栏存储每一个的bean类
+ */
 public final class BottomTabBean {
     private final CharSequence ICON;
     private final CharSequence TITLE;

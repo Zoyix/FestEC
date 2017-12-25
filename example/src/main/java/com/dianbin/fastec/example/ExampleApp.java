@@ -18,11 +18,13 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        //我的电脑无线Ip：http://192.168.1.3:8080/RestServer/api/
+        //公司ip: http://10.41.69.60:8080/RestServer/api/
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://127.0.0.1/")
-                .withInterceptor(new DebugIntercepter("index", R.raw.test))
+                .withApiHost("http://10.41.69.60:8080/RestServer/api/")
+                .withInterceptor(new DebugIntercepter("text", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
                 .configure();

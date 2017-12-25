@@ -1,0 +1,54 @@
+package com.dianbin.latte.ec.main.index;
+
+import android.view.View;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.SimpleClickListener;
+import com.dianbin.latte.app.Latte;
+import com.dianbin.latte.delegates.LatteDelegate;
+import com.dianbin.latte.ec.detail.GoodsDetailDelegate;
+
+import retrofit2.http.DELETE;
+
+/**
+ * Created by Administrator on 2017/12/22.
+ */
+
+/**
+ * RecycleView里面的没个子项的点击事件
+ */
+public class IndexItemClickListener extends SimpleClickListener {
+
+    private final LatteDelegate DELEGATE;
+
+    private IndexItemClickListener(LatteDelegate delegate) {
+        this.DELEGATE = delegate;
+    }
+
+    /**
+     *
+     * @param delegate 要跳转的fragment
+     * @return
+     */
+    public static SimpleClickListener create(LatteDelegate delegate) {
+        return new IndexItemClickListener(delegate);
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create();
+        DELEGATE.start(delegate);
+    }
+
+    @Override
+    public void onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+    }
+
+    @Override
+    public void onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+    }
+}

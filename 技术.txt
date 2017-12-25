@@ -4,4 +4,13 @@
 
 ==看过的源码，butterknife看过一部分 通过注解开发，继承AbstractProcessor类
 
+==底部通用导航栏的封装 LinearLayout+FrameLayout
+
+==使用BaseRecyclerViewAdapterHelper开源库实现RecyclerView 10-4 00.36
+
+==使用Glide处理图片
+
+==在cmd中输入下面代码，能够疯狂点击屏幕测试
+adb shell monkey -p com.lcns.fmrt.test -s 500 -v 10000
+
 ==

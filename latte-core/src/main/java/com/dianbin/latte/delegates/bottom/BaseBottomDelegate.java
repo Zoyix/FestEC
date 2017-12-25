@@ -27,6 +27,10 @@ import me.yokeyword.fragmentation.SupportFragment;
  * Created by Administrator on 2017/12/12.
  */
 
+/**
+ *  实现底部导航栏的初始化和相应的点击事件
+ *  点击底部导航栏，变色和切换fragment
+ */
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {
     private final ArrayList<BottomTabBean> TAB_BEANS = new ArrayList<>();
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
@@ -38,6 +42,11 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     @BindView(R2.id.bottom_bar)
     LinearLayoutCompat mBottomBar = null;
 
+    /**
+     *
+     * @param builder 传入建造者
+     * @return ItemBuilder中的ITEMS
+     */
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
     @Override
@@ -54,7 +63,6 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIndexDelegate = setIndexDelegate();
-        //TODO 为什么要判断？
         if (setClickedColor() != 0) {
             mClickedColor = setClickedColor();
         }
@@ -62,6 +70,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final ItemBuilder builder = ItemBuilder.builder();
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = setItems(builder);
         ITEMS.putAll(items);
+        //将导航栏的每个bean和其对应的fragment分别装入ArrayList中待用
         for (Map.Entry<BottomTabBean, BottomItemDelegate> item : ITEMS.entrySet()) {
             final BottomTabBean key = item.getKey();
             final BottomItemDelegate value = item.getValue();
@@ -109,6 +118,10 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         }
     }
 
+    /**
+     * 点击底部导航栏，变色和切换fragment
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         final int tag = (int) v.getTag();

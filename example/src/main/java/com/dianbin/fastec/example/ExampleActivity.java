@@ -15,6 +15,10 @@ import com.dianbin.latte.ec.sign.SignInDelegate;
 import com.dianbin.latte.ui.launcher.ILauncherListener;
 import com.dianbin.latte.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
+//TODO okHttp是不是本身就有这样的机制，网络请求在新线程里做，返回的回调方法在主线程里做？
+// 如果他本身就是这样的机制，那rxJava岂不是作用不大？？
 
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
     @Override
@@ -26,6 +30,8 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         }
 
         Latte.getConfigurator().withActivity(this);
+        //让状态栏隐藏
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override
@@ -51,7 +57,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
-                Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();
                 startWithPop(new SignInDelegate());
                 break;
             default:

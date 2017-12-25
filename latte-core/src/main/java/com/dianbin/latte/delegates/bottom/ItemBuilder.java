@@ -6,8 +6,13 @@ import java.util.LinkedHashMap;
  * Created by Administrator on 2017/12/12.
  */
 
+/**
+ * 底部导航栏和对应fragment的建造者
+ */
 public final class ItemBuilder {
-
+    /**
+     * 返回有序的导航栏和对应fragment的list
+     */
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
 
     static ItemBuilder builder() {
