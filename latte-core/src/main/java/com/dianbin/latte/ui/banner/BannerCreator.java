@@ -11,6 +11,9 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/12/20.
  */
 
+/**
+ * Banner建造者
+ */
 public class BannerCreator {
 
     public static void setDefault(ConvenientBanner<String> convenientBanner,

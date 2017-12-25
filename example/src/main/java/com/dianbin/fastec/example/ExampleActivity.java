@@ -30,6 +30,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         }
 
         Latte.getConfigurator().withActivity(this);
+        //让状态栏隐藏
         StatusBarCompat.translucentStatusBar(this, true);
     }
 
@@ -56,7 +57,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
-                Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();
                 startWithPop(new SignInDelegate());
                 break;
             default:

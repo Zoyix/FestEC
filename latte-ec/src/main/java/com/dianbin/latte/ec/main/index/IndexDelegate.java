@@ -52,6 +52,9 @@ public class IndexDelegate extends BottomItemDelegate {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
     }
 
+    /**
+     * 下拉刷新的旋转动画
+     */
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_bright,
@@ -69,7 +72,6 @@ public class IndexDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(manager);
         //设置分割线
         mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
-        //TODO 为什么得到的是EcBottomDelegate？
         final EcBottomDelegate ecBottomDelegate = getParentDelegate();
         mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }

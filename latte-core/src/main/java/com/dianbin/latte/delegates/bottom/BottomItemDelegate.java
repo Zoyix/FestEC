@@ -11,6 +11,9 @@ import com.dianbin.latte.delegates.LatteDelegate;
  * Created by Administrator on 2017/12/12.
  */
 
+/**
+ * 是每个底部导航栏对应fragment的基础类，双击返回键退出
+ */
 public abstract class BottomItemDelegate extends LatteDelegate implements View.OnKeyListener {
 
     private long mExitTime = 0;
@@ -19,6 +22,7 @@ public abstract class BottomItemDelegate extends LatteDelegate implements View.O
     @Override
     public void onResume() {
         super.onResume();
+        //后台回来后，把焦点设置回来，并注册事件，否则回来后失效
         final View rootView = getView();
         if (rootView != null) {
             rootView.setFocusableInTouchMode(true);

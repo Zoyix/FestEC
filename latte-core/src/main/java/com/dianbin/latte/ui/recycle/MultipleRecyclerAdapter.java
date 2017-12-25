@@ -115,9 +115,14 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     }
 
+    /**
+     * SpanSize是啥? 表示占据的大小，不能大于gridLayoutManager中设置的spanCount，否则报错
+     * @param gridLayoutManager
+     * @param position
+     * @return
+     */
     @Override
     public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-        //SpanSize是啥 表示占据的大小，不能大于gridLayoutManager中设置的spanCount，否则报错
         return getData().get(position).getField(MultipleFields.SPAN_SIZE);
     }
 

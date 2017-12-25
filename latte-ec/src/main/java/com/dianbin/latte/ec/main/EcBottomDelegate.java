@@ -15,6 +15,9 @@ import java.util.LinkedHashMap;
  * Created by Administrator on 2017/12/13.
  */
 
+/**
+ * 最大的fragment包括底部导航栏的
+ */
 public class EcBottomDelegate extends BaseBottomDelegate {
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {

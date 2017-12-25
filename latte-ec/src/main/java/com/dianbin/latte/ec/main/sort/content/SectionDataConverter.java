@@ -11,6 +11,11 @@ import java.util.List;
  * Created by zhouyixin on 2017/12/24.
  */
 
+/**
+ * 为什么不继承DataConverter?
+ * DataConverter只适合单list的，即返回的数据中只有一个list的
+ * 该类处理的是返回的数据list中还是由一个个list组成，即list中包含list的
+ */
 public class SectionDataConverter {
 
     final List<SectionBean> convert(String json) {

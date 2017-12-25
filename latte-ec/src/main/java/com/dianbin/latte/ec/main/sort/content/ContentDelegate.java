@@ -55,6 +55,7 @@ public class ContentDelegate extends LatteDelegate {
     }
 
     private void initData() {
+        //TODO mContentId都传了，为什么切换的时候的数据还是一样？
         RestClient.builder()
                 .url("sort_content_list.php?contentId" + mContentId)
                 .success(new ISuccess() {
@@ -72,7 +73,6 @@ public class ContentDelegate extends LatteDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        //TODO 看看第一行代码里怎么写的!
         final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
         initData();

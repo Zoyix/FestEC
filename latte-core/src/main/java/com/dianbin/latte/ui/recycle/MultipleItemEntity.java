@@ -10,6 +10,9 @@ import java.util.LinkedHashMap;
  * Created by Administrator on 2017/12/19.
  */
 
+/**
+ *  每个内容的Entity，并返回要相应视图的type
+ */
 public class MultipleItemEntity implements MultiItemEntity {
 
 //    ReferenceQueue中保存的对象是已经失去了它所软引用的对象的Reference对象  http://blog.51cto.com/alinazh/1276173
@@ -27,9 +30,12 @@ public class MultipleItemEntity implements MultiItemEntity {
         return new MultipleEntityBuilder();
     }
 
+    /**
+     * 返回的数据是哪个类型的，选择相应的视图渲染(在开源库里已经封装)
+     * @return
+     */
     @Override
     public int getItemType() {
-        //返回这个做什么？返回的数据是哪个类型的，选择相应的视图渲染
         return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);
     }
 

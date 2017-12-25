@@ -14,6 +14,9 @@ import retrofit2.http.DELETE;
  * Created by Administrator on 2017/12/22.
  */
 
+/**
+ * RecycleView里面的没个子项的点击事件
+ */
 public class IndexItemClickListener extends SimpleClickListener {
 
     private final LatteDelegate DELEGATE;
@@ -22,6 +25,11 @@ public class IndexItemClickListener extends SimpleClickListener {
         this.DELEGATE = delegate;
     }
 
+    /**
+     *
+     * @param delegate 要跳转的fragment
+     * @return
+     */
     public static SimpleClickListener create(LatteDelegate delegate) {
         return new IndexItemClickListener(delegate);
     }

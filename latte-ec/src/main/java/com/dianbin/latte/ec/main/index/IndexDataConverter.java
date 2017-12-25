@@ -15,6 +15,9 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/12/19.
  */
 
+/**
+ * 首页数据处理器
+ */
 public class IndexDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
@@ -60,4 +63,5 @@ public class IndexDataConverter extends DataConverter {
 
         return ENTITIES;
     }
+
 }

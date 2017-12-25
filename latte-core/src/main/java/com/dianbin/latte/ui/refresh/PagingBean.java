@@ -4,7 +4,7 @@ package com.dianbin.latte.ui.refresh;
  * Created by Administrator on 2017/12/20.
  */
 
-public class PaginBean {
+public class PagingBean {
     //当前是第几页
     private int mPageIndex = 0;
     //总数据条数
@@ -20,7 +20,7 @@ public class PaginBean {
         return mPageIndex;
     }
 
-    public PaginBean setPageIndex(int mPageIndex) {
+    public PagingBean setPageIndex(int mPageIndex) {
         this.mPageIndex = mPageIndex;
         return this;
     }
@@ -29,7 +29,7 @@ public class PaginBean {
         return mTotal;
     }
 
-    public PaginBean setTotal(int mTotal) {
+    public PagingBean setTotal(int mTotal) {
         this.mTotal = mTotal;
         return this;
     }
@@ -38,7 +38,7 @@ public class PaginBean {
         return mPageSize;
     }
 
-    public PaginBean setPageSize(int mPageSize) {
+    public PagingBean setPageSize(int mPageSize) {
         this.mPageSize = mPageSize;
         return this;
     }
@@ -47,7 +47,7 @@ public class PaginBean {
         return mCurrentCount;
     }
 
-    public PaginBean setCurrentCount(int mCurrentCount) {
+    public PagingBean setCurrentCount(int mCurrentCount) {
         this.mCurrentCount = mCurrentCount;
         return this;
     }
@@ -56,12 +56,12 @@ public class PaginBean {
         return mDelayed;
     }
 
-    public PaginBean setDelayed(int mDelayed) {
+    public PagingBean setDelayed(int mDelayed) {
         this.mDelayed = mDelayed;
         return this;
     }
 
-    PaginBean addIndex() {
+    PagingBean addIndex() {
         mPageIndex++;
         return this;
     }

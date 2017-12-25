@@ -9,11 +9,15 @@ import java.util.WeakHashMap;
  * Created by Administrator on 2017/12/19.
  */
 
+/**
+ *  MultipleItemEntity的建造者
+ */
 public class MultipleEntityBuilder {
     private static final LinkedHashMap<Object, Object> FIELDS = new LinkedHashMap<>();
 
     public MultipleEntityBuilder() {
         //先清除之前的数据
+        //TODO 真的有用？
         FIELDS.clear();
     }
 

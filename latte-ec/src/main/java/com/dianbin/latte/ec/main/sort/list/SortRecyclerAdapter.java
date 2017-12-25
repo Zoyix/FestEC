@@ -84,11 +84,10 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
     private void showContent(int contentId) {
         final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
-        swithContent(delegate);
+        switchContent(delegate);
     }
 
-    private void swithContent(ContentDelegate delegate) {
-        //TODO 如果默认不显示第一页，是否会得到null？
+    private void switchContent(ContentDelegate delegate) {
         final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
         if (contentDelegate != null) {
             contentDelegate.replaceFragment(delegate, false);

@@ -6,6 +6,9 @@ import com.chad.library.adapter.base.entity.SectionEntity;
  * Created by zhouyixin on 2017/12/24.
  */
 
+/**
+ * SectionContentItemEntity即第二类的Entity
+ */
 public class SectionBean extends SectionEntity<SectionContentItemEntity> {
 
     private boolean mIsMore = false;
