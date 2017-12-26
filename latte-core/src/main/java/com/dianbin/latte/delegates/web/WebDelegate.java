@@ -16,9 +16,9 @@ import java.lang.ref.WeakReference;
  */
 
 /**
- *  发现页内容的Fragment的抽象类
+ * 发现页内容的Fragment的抽象类
  */
-public abstract class WebDelegate extends LatteDelegate {
+public abstract class WebDelegate extends LatteDelegate implements IWebViewInitializer {
 
     private WebView mWebView = null;
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
