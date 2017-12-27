@@ -35,7 +35,7 @@ public class Router {
     /**
      * @return 返回true 表示原生接管了
      */
-    public final boolean handleWebUrl(WebDelegate delegate, String url) {
+    public final boolean  handleWebUrl(WebDelegate delegate, String url) {
         //如果是电话协议
         if (url.contains("tel:")) {
             callPhone(delegate.getContext(), url);
@@ -62,7 +62,7 @@ public class Router {
     }
 
     private void loadLocalPage(WebView webView, String url) {
-        loadWebPage(webView, "file:///android_asset" + url);
+        loadWebPage(webView, "file:///android_asset/" + url);
     }
 
     private void loadPage(WebView webView, String url) {

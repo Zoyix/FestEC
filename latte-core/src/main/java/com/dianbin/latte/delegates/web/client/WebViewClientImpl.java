@@ -1,5 +1,7 @@
 package com.dianbin.latte.delegates.web.client;
 
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -19,6 +21,12 @@ public class WebViewClientImpl extends WebViewClient {
         this.DELEGATE = delegate;
     }
 
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+        return super.shouldInterceptRequest(view, request);
+    }
+
+    //TODO 这个方法什么时候用？
     /**
      * @return 如果是false 就由webView接管事件，为true 由原生接管事件
      */

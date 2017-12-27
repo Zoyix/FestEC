@@ -23,7 +23,7 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
     private WebView mWebView = null;
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
     private String mUrl = null;
-    private boolean mIsWebViewAbailable = false;
+    private boolean mIsWebViewAvailable = false;
 
     public WebDelegate() {
 
@@ -36,6 +36,7 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
         super.onCreate(savedInstanceState);
         final Bundle args = getArguments();
         mUrl = args.getString(RouteKeys.URL.name());
+        initWebView();
     }
 
     @SuppressLint("JavascriptInterface")
@@ -54,7 +55,7 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
                 mWebView.addJavascriptInterface(LatteWebInterface.create(this), "Latte");
-                mIsWebViewAbailable = true;
+                mIsWebViewAvailable = true;
             } else {
                 throw new NullPointerException("Initializer is null");
             }
@@ -65,7 +66,7 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
         if (mWebView == null) {
             throw new NullPointerException("WebView IS NULL!");
         }
-        return mIsWebViewAbailable ? mWebView : null;
+        return mIsWebViewAvailable ? mWebView : null;
     }
 
     public String getUrl() {
@@ -94,7 +95,7 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mIsWebViewAbailable = false;
+        mIsWebViewAvailable = false;
     }
 
     @Override
