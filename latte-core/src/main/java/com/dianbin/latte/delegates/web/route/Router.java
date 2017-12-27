@@ -35,20 +35,17 @@ public class Router {
     /**
      * @return 返回true 表示原生接管了
      */
-    public final boolean  handleWebUrl(WebDelegate delegate, String url) {
+    public final boolean handleWebUrl(WebDelegate delegate, String url) {
         //如果是电话协议
         if (url.contains("tel:")) {
             callPhone(delegate.getContext(), url);
             return true;
         }
 
-        final LatteDelegate parentDelegate = delegate.getParentDelegate();
+        final LatteDelegate topDelegate = delegate.getTopDelegate();
+
         final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
-        if (parentDelegate == null) {
-            delegate.start(webDelegate);
-        } else {
-            parentDelegate.start(webDelegate);
-        }
+        topDelegate.start(webDelegate);
 
         return true;
     }
@@ -74,7 +71,7 @@ public class Router {
     }
 
     public final void loadPage(WebDelegate delegate, String url) {
-        loadPage(delegate.getWebView(),url);
+        loadPage(delegate.getWebView(), url);
     }
 
     private void callPhone(Context context, String url) {

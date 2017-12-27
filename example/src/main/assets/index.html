@@ -8,9 +8,17 @@
 </head>
 <body>
 
-<h1>这是本地页面1</h1>
+<button id="test">测试事件</button>
 
-<a href="second.html">跳转页面</a>
+<script type="text/javascript">
+    document.getElementById('text').onclick = function(){
+      var command = {
+          'action':'test'
+      }
+    };
+    latte.event(JSON.stringify(command));
+    
+</script>
 
 </body>
 </html>
