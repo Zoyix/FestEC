@@ -13,6 +13,7 @@ public class EventManage {
     private static final HashMap<String, Event> EVENTS = new HashMap<>();
 
     private EventManage() {
+        addEvent("test",new TestEvent());
     }
 
     private static class Holder {

@@ -28,7 +28,7 @@ final class LatteWebInterface {
         final String action = JSON.parseObject(params).getString("action");
         final Event event = EventManage.getInstance().createEvent(action);
         //TODO 如果没有那返回来的是UndefineEvent，设置下面的一些有什么用？
-        if (event!=null){
+        if (event != null) {
             event.setAction(action);
             event.setDelegate(DELEGATE);
             event.setContext(DELEGATE.getContext());

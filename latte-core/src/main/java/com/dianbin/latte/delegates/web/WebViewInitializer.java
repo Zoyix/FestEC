@@ -12,6 +12,7 @@ import android.webkit.WebView;
 
 public class WebViewInitializer {
 
+    @SuppressLint("SetJavaScriptEnabled")
     public WebView createWebView(WebView webView) {
         //设置可以调试（如Chrome的调试），在4.9以上才行
         WebView.setWebContentsDebuggingEnabled(true);
@@ -31,6 +32,8 @@ public class WebViewInitializer {
         });
         //初始化WebSettings
         final WebSettings settings = webView.getSettings();
+        //TODO 好像哪里出现过？
+        settings.setJavaScriptEnabled(true);
         //TODO 这个是什么
         final String ua = settings.getUserAgentString();
         settings.setUserAgentString(ua + "Latte");
