@@ -32,6 +32,10 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
 
     }
 
+    /**
+     * 传入初始化webView所需要的东西的抽象方法
+     * @return
+     */
     public abstract IWebViewInitializer setInitializer();
 
     @Override
@@ -58,6 +62,7 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
                 final String name = Latte.getConfiguration(ConfigKeys.JAVASCRIPT_INTERFACE);
+                //加入可以被js调用的类
                 mWebView.addJavascriptInterface(LatteWebInterface.create(this), name);
                 mIsWebViewAvailable = true;
             } else {

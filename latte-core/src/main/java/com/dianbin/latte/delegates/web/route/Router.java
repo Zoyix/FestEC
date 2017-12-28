@@ -33,6 +33,7 @@ public class Router {
     }
 
     /**
+     * 每次有新的跳转时被调用
      * @return 返回true 表示原生接管了
      */
     public final boolean handleWebUrl(WebDelegate delegate, String url) {
@@ -42,8 +43,8 @@ public class Router {
             return true;
         }
 
+        //获取到最底层的Fragment即BaseBottomDelegate，进行跳转。所谓的原生接管即原生获取到请求后进行一定的处理后，新创建个WebDelegateImpl去取代原先的那个
         final LatteDelegate topDelegate = delegate.getTopDelegate();
-
         final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
         topDelegate.start(webDelegate);
 
@@ -70,6 +71,11 @@ public class Router {
         }
     }
 
+    /**
+     * 让WebDelegate(fragment)里的WebView加载页面的方法
+     * @param delegate
+     * @param url
+     */
     public final void loadPage(WebDelegate delegate, String url) {
         loadPage(delegate.getWebView(), url);
     }

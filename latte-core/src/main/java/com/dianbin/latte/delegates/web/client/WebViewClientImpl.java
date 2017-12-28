@@ -19,7 +19,9 @@ import com.dianbin.latte.util.log.LatteLogger;
  * Created by Administrator on 2017/12/26.
  */
 
-//TODO 这个类干嘛的？
+/**
+ * 用来原生和webView交接的，使原生的一些方法可以干预webView
+ */
 public class WebViewClientImpl extends WebViewClient {
     private final WebDelegate DELEGATE;
     private IPageLoadListener mIPageLoadListener = null;
@@ -34,14 +36,8 @@ public class WebViewClientImpl extends WebViewClient {
         this.DELEGATE = delegate;
     }
 
-    @Override
-    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-        return super.shouldInterceptRequest(view, request);
-    }
-
-    //TODO 这个方法什么时候用？
-
     /**
+     * 每次有新的跳转时调用
      * @return 如果是false 就由webView接管事件，为true 由原生接管事件
      */
     @Override
@@ -50,6 +46,12 @@ public class WebViewClientImpl extends WebViewClient {
         return Router.getInstance().handleWebUrl(DELEGATE, url);
     }
 
+    /**
+     * 请求开始前调用
+     * @param view
+     * @param url
+     * @param favicon
+     */
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
@@ -59,6 +61,11 @@ public class WebViewClientImpl extends WebViewClient {
         LatteLoader.showLoading(view.getContext());
     }
 
+    /**
+     * 请求结束后调用
+     * @param view
+     * @param url
+     */
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);

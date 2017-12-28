@@ -10,6 +10,9 @@ import com.dianbin.latte.delegates.web.event.EventManage;
  * Created by Administrator on 2017/12/26.
  */
 
+/**
+ *  被js调用的类
+ */
 //TODO 12-4 11:20 为什么通过操作去掉public？不直接删掉？？
 final class LatteWebInterface {
     private final WebDelegate DELEGATE;

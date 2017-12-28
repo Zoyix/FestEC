@@ -10,6 +10,9 @@ import android.webkit.WebView;
  * Created by zhouyixin on 2017/12/26.
  */
 
+/**
+ * 初始化WebView的类
+ */
 public class WebViewInitializer {
 
     @SuppressLint("SetJavaScriptEnabled")

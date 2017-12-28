@@ -21,7 +21,11 @@ public class WebDelegateImpl extends WebDelegate {
 
     private IPageLoadListener mIPageLoadListener = null;
 
-
+    /**
+     * 传入要跳转的url
+     * @param url
+     * @return
+     */
     public static WebDelegateImpl create(String url) {
         final Bundle args = new Bundle();
         args.putString(RouteKeys.URL.name(), url);
@@ -35,6 +39,10 @@ public class WebDelegateImpl extends WebDelegate {
         return getWebView();
     }
 
+    /**
+     * 设置每次跳转前后都要做的事（接口）
+     * @param listener
+     */
     public void setPageLoadListener(IPageLoadListener listener) {
         this.mIPageLoadListener = listener;
     }
@@ -52,6 +60,11 @@ public class WebDelegateImpl extends WebDelegate {
         return this;
     }
 
+    /**
+     * 传入待初始化的Webview，将其初始化
+     * @param webView
+     * @return
+     */
     @Override
     public WebView initWebView(WebView webView) {
         return new WebViewInitializer().createWebView(webView);
