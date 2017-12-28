@@ -3,6 +3,7 @@ package com.dianbin.fastec.example;
 import android.app.Application;
 
 import com.dianbin.latte.app.Latte;
+import com.dianbin.fastec.example.enent.TestEvent;
 import com.dianbin.latte.ec.database.DatabaseManager;
 import com.dianbin.latte.ec.icon.FontEcModule;
 import com.dianbin.latte.net.interceptors.DebugIntercepter;
@@ -27,6 +28,8 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugIntercepter("text", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
+                .withJavascriptInterface("latte")
+                .withWebEvent("test",new TestEvent())
                 .configure();
 
         initStetho();

@@ -1,7 +1,9 @@
-package com.dianbin.latte.delegates.web.event;
+package com.dianbin.fastec.example.enent;
 
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import com.dianbin.latte.delegates.web.event.Event;
 
 /**
  * Created by Administrator on 2017/12/27.

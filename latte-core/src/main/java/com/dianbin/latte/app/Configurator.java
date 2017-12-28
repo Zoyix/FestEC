@@ -2,7 +2,10 @@ package com.dianbin.latte.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
+import com.dianbin.latte.delegates.web.event.Event;
+import com.dianbin.latte.delegates.web.event.EventManage;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -10,7 +13,6 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 
 import okhttp3.Interceptor;
@@ -28,7 +30,7 @@ public class Configurator {
 
     private Configurator() {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
-        LATTE_CONFIGS.put(ConfigKeys.HANDLER,HANDLER);
+        LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     public static Configurator getInstance() {
@@ -96,6 +98,18 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
         return this;
     }
+
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManage manager = EventManage.getInstance();
+        manager.addEvent(name, event);
+        return this;
+    }
+
 
     private void checkConfiguration() {
         final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
