@@ -2,6 +2,7 @@ package com.dianbin.latte.delegates.web.client;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
@@ -59,6 +60,16 @@ public class WebViewClientImpl extends WebViewClient {
             mIPageLoadListener.onLoadStart();
         }
         LatteLoader.showLoading(view.getContext());
+    }
+
+    //TODO 为什么拦截器里每次API请求添加的cookie要以webView里的为准，即为什么要从webView里取？比如用户的登录信息，就不能自己组个cookie然后加到API请求中么？为什么一定要从webView里取？
+    //获取浏览器cookie
+    private void syncCookie(){
+        final CookieManager manager = CookieManager.getInstance();
+        /**
+         * 注意，这里的Cookie和API请求的Cookie是不一样的，这个在网页不可见
+         */
+        final String cookieStr = manager.getCookie("");
     }
 
     /**
