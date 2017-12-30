@@ -13,7 +13,7 @@ import okhttp3.Response;
 /**
  * Created by Administrator on 2017/12/29.
  */
-
+//TODO 这个拦截器为什么放这里？
 public class AddCookieInterceptor implements Interceptor {
 
     @Override
@@ -31,6 +31,9 @@ public class AddCookieInterceptor implements Interceptor {
                         builder.addHeader("Cookie",cookie);
                     }
                 });
+
+        String cookie = LattePreference.getCustomAppProfile("cookie");
+        builder.addHeader("Cookie",cookie);
 
         return chain.proceed(builder.build());
     }

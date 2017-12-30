@@ -104,6 +104,7 @@ public class Configurator {
         return this;
     }
 
+    //添加js中要调用的方法，即跟action的值对应的每个方法
     public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
         final EventManage manager = EventManage.getInstance();
         manager.addEvent(name, event);

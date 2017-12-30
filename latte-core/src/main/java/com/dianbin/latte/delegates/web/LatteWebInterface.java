@@ -29,6 +29,7 @@ final class LatteWebInterface {
     @JavascriptInterface
     public String event(String params) {
         final String action = JSON.parseObject(params).getString("action");
+        //根据action的值选择不同的执行类
         final Event event = EventManage.getInstance().createEvent(action);
         //TODO 如果没有那返回来的是UndefineEvent，设置下面的一些有什么用？
         if (event != null) {

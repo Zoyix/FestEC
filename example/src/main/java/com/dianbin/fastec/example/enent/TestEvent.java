@@ -19,6 +19,7 @@ public class TestEvent extends Event {
             webView.post(new Runnable() {
                 @Override
                 public void run() {
+                    //运行js里的nativeCall()方法
                     webView.evaluateJavascript("nativeCall();",null);
                 }
             });
