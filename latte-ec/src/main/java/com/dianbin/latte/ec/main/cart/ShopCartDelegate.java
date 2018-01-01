@@ -1,12 +1,16 @@
 package com.dianbin.latte.ec.main.cart;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Toast;
 
 import com.dianbin.latte.app.Latte;
@@ -28,7 +32,7 @@ import butterknife.OnClick;
  * Created by zhouyixin on 2017/12/31.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener {
 
     private ShopCartAdapter mAdapter = null;
 
@@ -37,6 +41,10 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
+    @BindView(R2.id.stub_no_item)
+    ViewStubCompat mStubNoItem = null;
+    @BindView(R2.id.tv_shop_cart_total_price)
+    AppCompatTextView mTotalPrice = null;
 
     /**
      * 这部分和视频里的不一样，视频里的代码虽然效率稍微高一点（不需要for循环），但是它容易出错。
@@ -90,12 +98,34 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
         for (int j = 0; j < size; j++) {
             data.get(j).setField(ShopCartItemFields.POSITION, j);
         }
+        checkItemCount();
     }
 
     @OnClick(R2.id.tv_top_shop_cart_clear)
-    void onClickClear(){
+    void onClickClear() {
         mAdapter.getData().clear();
         mAdapter.notifyDataSetChanged();
+        checkItemCount();
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void checkItemCount() {
+        final int count = mAdapter.getItemCount();
+        if (count == 0) {
+            //stubView 用法特性：https://www.jianshu.com/p/5f64bacbd759
+            final View stubView = mStubNoItem.inflate();
+            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
+            tvToBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO _mActivity和getContext()有什么区别？
+                    Toast.makeText(_mActivity, "你该购物了！", Toast.LENGTH_SHORT).show();
+                }
+            });
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -124,8 +154,16 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     public void onSuccess(String response) {
         final ArrayList<MultipleItemEntity> data = new ShopCartDataConverter().setJsonData(response).convert();
         mAdapter = new ShopCartAdapter(data);
+        mAdapter.setCartItemListener(this);
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+        checkItemCount();
+    }
+
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+        final double price = mAdapter.getTotalprice();
+        mTotalPrice.setText(String.valueOf(price));
     }
 }
