@@ -14,6 +14,9 @@ import java.util.ArrayList;
  * Created by zhouyixin on 2017/12/31.
  */
 
+/**
+ * 购物车数据解析器
+ */
 public class ShopCartDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {

@@ -21,8 +21,6 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.List;
 
-import javax.microedition.khronos.opengles.GL;
-
 /**
  * Created by zhouyixin on 2017/12/31.
  */
@@ -30,8 +28,10 @@ import javax.microedition.khronos.opengles.GL;
 public class ShopCartAdapter extends MultipleRecyclerAdapter {
     //TODO 计算总价逻辑不恰当，应该选中了的才计价  13-5  16：30
     private ICartItemListener mCartItemListener = null;
-    private double mTotalprice = 0.00;
+    //所有的总价
+    private double mTotalPrice = 0.00;
 
+    //glide的配置选项
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
@@ -45,7 +45,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
             final double price = entity.getField(ShopCartItemFields.PRICE);
             final int count = entity.getField(ShopCartItemFields.COUNT);
             final double total = price * count;
-            mTotalprice = mTotalprice + total;
+            mTotalPrice = mTotalPrice + total;
         }
 
         //添加购物车Item布局
@@ -56,8 +56,8 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         this.mCartItemListener = listener;
     }
 
-    public double getTotalprice(){
-        return mTotalprice;
+    public double getTotalPrice(){
+        return mTotalPrice;
     }
 
     @Override
@@ -131,7 +131,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                             tvCount.setText(String.valueOf(currentCount - 1));
 
                                             if(mCartItemListener!=null){
-                                                mTotalprice = mTotalprice-price;
+                                                mTotalPrice = mTotalPrice -price;
                                                 //TODO 把当前栏的总价传出去干嘛
                                                 final double itemTotal = (currentCount - 1)*price;
                                                 mCartItemListener.onItemClick(itemTotal);
@@ -158,7 +158,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                         tvCount.setText(String.valueOf(currentCount + 1));
 
                                         if(mCartItemListener!=null){
-                                            mTotalprice = mTotalprice+price;
+                                            mTotalPrice = mTotalPrice +price;
                                             //TODO 把当前栏的总价传出去干嘛
                                             final double itemTotal = (currentCount + 1)*price;
                                             mCartItemListener.onItemClick(itemTotal);

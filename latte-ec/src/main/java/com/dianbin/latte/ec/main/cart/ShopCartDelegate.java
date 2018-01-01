@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.Toast;
 
 import com.dianbin.latte.app.Latte;
@@ -24,6 +23,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,6 +35,7 @@ import butterknife.OnClick;
 public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener {
 
     private ShopCartAdapter mAdapter = null;
+    private double mTotalPrive = 0.00;
 
     //TODO 底层的封装再看一遍，尤其是ButtonKnife的封装
     @BindView(R2.id.rv_shop_cart)
@@ -44,7 +45,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     @BindView(R2.id.stub_no_item)
     ViewStubCompat mStubNoItem = null;
     @BindView(R2.id.tv_shop_cart_total_price)
-    AppCompatTextView mTotalPrice = null;
+    AppCompatTextView mTvTotalPrice = null;
 
     /**
      * 这部分和视频里的不一样，视频里的代码虽然效率稍微高一点（不需要for循环），但是它容易出错。
@@ -101,6 +102,9 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         checkItemCount();
     }
 
+    /**
+     * 清除点击事件
+     */
     @OnClick(R2.id.tv_top_shop_cart_clear)
     void onClickClear() {
         mAdapter.getData().clear();
@@ -108,6 +112,39 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         checkItemCount();
     }
 
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay() {
+
+    }
+
+    //创建订单，注意：和支付是没有关系的
+    private void createOrder() {
+        final String orderUrl = "http://app.api.zanzuanshi.com/api/v1/peyment";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userid", 264392);
+        orderParams.put("amount", 0.01);
+        orderParams.put("comment", "测试支付");
+        orderParams.put("type", 1);
+        orderParams.put("ordertype", 0);
+        orderParams.put("isanonymous", true);
+        orderParams.put("followduser", 0);
+        RestClient.builder()
+                .url(orderUrl)
+                .params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+                    }
+                })
+                .build()
+                .post();
+    }
+
+    /**
+     * 检查是否需要显示stubView里的内容
+     */
+    //TODO 有个问题，点两次清空会崩溃
     @SuppressLint("RestrictedApi")
     private void checkItemCount() {
         final int count = mAdapter.getItemCount();
@@ -158,12 +195,15 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+        //取出初始总价并设置
+        mTotalPrive = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(mTotalPrive));
         checkItemCount();
     }
 
     @Override
     public void onItemClick(double itemTotalPrice) {
-        final double price = mAdapter.getTotalprice();
-        mTotalPrice.setText(String.valueOf(price));
+        final double price = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(price));
     }
 }
