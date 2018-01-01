@@ -1,5 +1,6 @@
 package com.dianbin.latte.ec.main.sort.list;
 
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
@@ -16,6 +17,8 @@ import com.dianbin.latte.ui.recycle.MultipleRecyclerAdapter;
 import com.dianbin.latte.ui.recycle.MultipleViewHolder;
 
 import java.util.List;
+
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * Created by zhouyixin on 2017/12/24.
@@ -88,9 +91,18 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(ContentDelegate delegate) {
-        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        //TODO fragmentation升级成1.0版本这里有变化
+//        这是原来的
+//        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+//        if (contentDelegate != null) {
+//            contentDelegate.replaceFragment(delegate, false);
+//        }
+
+
+        final LatteDelegate contentDelegate =
+                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(), ContentDelegate.class);
         if (contentDelegate != null) {
-            contentDelegate.replaceFragment(delegate, false);
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
         }
     }
 

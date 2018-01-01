@@ -28,10 +28,11 @@ public class SortDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         final VerticalListDelegate listDelegate = new VerticalListDelegate();
-        loadRootFragment(R.id.vertical_list_container,listDelegate);
-        //addToBack参数是：是否添加到回退栈
+        getSupportDelegate().loadRootFragment(R.id.vertical_list_container,listDelegate);
         //设置右侧第一个分类显示，默认显示分类一
-        replaceLoadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1),false);
-
+        //addToBack参数是：是否添加到回退栈
+        //TODO 次要，原来的和现在的有和不同
+//        getSupportDelegate().replaceLoadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1),false);
+        getSupportDelegate().loadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1));
     }
 }

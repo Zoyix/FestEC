@@ -46,7 +46,7 @@ public class Router {
         //获取到最底层的Fragment即BaseBottomDelegate，进行跳转。所谓的原生接管即原生获取到请求后进行一定的处理后，新创建个WebDelegateImpl去取代原先的那个
         final LatteDelegate topDelegate = delegate.getTopDelegate();
         final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
-        topDelegate.start(webDelegate);
+        topDelegate.getSupportDelegate().start(webDelegate);
 
         return true;
     }

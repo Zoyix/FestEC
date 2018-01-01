@@ -31,8 +31,9 @@ public class GoodsDetailDelegate extends LatteDelegate {
 
     }
 
+    //TODO 13-7 为什么将protected改成public？
     @Override
-    protected FragmentAnimator onCreateFragmentAnimator() {
+    public FragmentAnimator onCreateFragmentAnimator() {
         return new DefaultHorizontalAnimator();
     }
 }

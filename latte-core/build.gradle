@@ -42,11 +42,11 @@ dependencies {
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
     api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
     //Fragment依赖
-    api 'me.yokeyword:fragmentation:0.10.1'
-    api 'me.yokeyword:fragmentation-swipeback:0.7.9'
+    api 'me.yokeyword:fragmentation:1.0.3'
+    api 'me.yokeyword:fragmentation-swipeback:1.0.3'
     //ButterKnife依赖
-    api 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    api 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     //网络请求依赖
     api 'com.squareup.okio:okio:1.13.0'
     api 'com.squareup.okhttp3:okhttp:3.8.1'
