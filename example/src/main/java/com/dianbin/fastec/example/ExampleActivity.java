@@ -45,13 +45,13 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     public void onSignInSuccess() {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
         //TODO 为什么要用Activity的start启动？
-        getSupportDelegate().start(new EcBottomDelegate());
+        getSupportDelegate().startWithPop(new EcBottomDelegate());
     }
 
     @Override
     public void onSignUpSuccess() {
         Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
-        getSupportDelegate().start(new EcBottomDelegate());
+        getSupportDelegate().startWithPop(new EcBottomDelegate());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 //startWithPop是在start的同时，把上一个元素彻底清除掉
                 //TODO 之前好像也没清除掉
 //                getSupportDelegate().startWithPop(new EcBottomDelegate());
-                getSupportDelegate().start(new EcBottomDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
 //                Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();

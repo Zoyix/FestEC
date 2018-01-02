@@ -52,7 +52,6 @@ public class WebViewClientImpl extends WebViewClient {
 
     /**
      * 请求开始前调用
-     *
      * @param view
      * @param url
      * @param favicon
