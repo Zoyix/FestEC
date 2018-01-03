@@ -6,13 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.dianbin.latte.ec.R;
-import com.dianbin.latte.ui.recycle.RgbValue;
-import com.dianbin.latte.util.log.LatteLogger;
-import com.orhanobut.logger.Logger;
+import com.dianbin.latte_ui.recycle.RgbValue;
 
 
 /**

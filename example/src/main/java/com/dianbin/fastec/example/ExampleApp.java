@@ -20,6 +20,7 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+
         //我的电脑无线Ip：http://192.168.1.6:8080/RestServer/api/
         //公司ip: http://10.41.69.60:8080/RestServer/api/
         Latte.init(this)

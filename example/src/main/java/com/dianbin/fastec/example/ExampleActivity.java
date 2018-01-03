@@ -9,13 +9,11 @@ import com.dianbin.latte.activities.ProxyActivity;
 import com.dianbin.latte.app.Latte;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.launcher.LauncherDelegate;
-import com.dianbin.latte.ec.launcher.LauncherScrollDelegate;
 import com.dianbin.latte.ec.main.EcBottomDelegate;
 import com.dianbin.latte.ec.sign.ISignListener;
 import com.dianbin.latte.ec.sign.SignInDelegate;
-import com.dianbin.latte.ui.launcher.ILauncherListener;
-import com.dianbin.latte.ui.launcher.OnLauncherFinishTag;
-import com.dianbin.latte.R;
+import com.dianbin.latte_ui.launcher.ILauncherListener;
+import com.dianbin.latte_ui.launcher.OnLauncherFinishTag;
 
 import qiu.niorgai.StatusBarCompat;
 

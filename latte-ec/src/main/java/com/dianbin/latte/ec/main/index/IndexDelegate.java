@@ -1,6 +1,5 @@
 package com.dianbin.latte.ec.main.index;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -16,17 +15,14 @@ import com.dianbin.latte.delegates.bottom.BottomItemDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.ec.main.EcBottomDelegate;
-import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.RestCreator;
-import com.dianbin.latte.net.callBack.ISuccess;
 import com.dianbin.latte.net.rx.RxRestClient;
-import com.dianbin.latte.ui.recycle.BaseDecoration;
-import com.dianbin.latte.ui.recycle.MultipleFields;
-import com.dianbin.latte.ui.recycle.MultipleItemEntity;
-import com.dianbin.latte.ui.refresh.RefreshHandler;
+import com.dianbin.latte_ui.recycle.BaseDecoration;
+import com.dianbin.latte_ui.recycle.MultipleFields;
+import com.dianbin.latte_ui.recycle.MultipleItemEntity;
+import com.dianbin.latte_ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 import butterknife.BindView;

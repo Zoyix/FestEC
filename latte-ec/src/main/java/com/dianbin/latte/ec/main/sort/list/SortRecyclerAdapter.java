@@ -1,6 +1,5 @@
 package com.dianbin.latte.ec.main.sort.list;
 
-import android.app.FragmentManager;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
@@ -10,11 +9,11 @@ import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.main.sort.SortDelegate;
 import com.dianbin.latte.ec.main.sort.content.ContentDelegate;
-import com.dianbin.latte.ui.recycle.ItemType;
-import com.dianbin.latte.ui.recycle.MultipleFields;
-import com.dianbin.latte.ui.recycle.MultipleItemEntity;
-import com.dianbin.latte.ui.recycle.MultipleRecyclerAdapter;
-import com.dianbin.latte.ui.recycle.MultipleViewHolder;
+import com.dianbin.latte_ui.recycle.ItemType;
+import com.dianbin.latte_ui.recycle.MultipleFields;
+import com.dianbin.latte_ui.recycle.MultipleItemEntity;
+import com.dianbin.latte_ui.recycle.MultipleRecyclerAdapter;
+import com.dianbin.latte_ui.recycle.MultipleViewHolder;
 
 import java.util.List;
 

@@ -11,10 +11,10 @@ import com.dianbin.latte.app.AccountManager;
 import com.dianbin.latte.app.IUserChecker;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
-import com.dianbin.latte.ui.launcher.ILauncherListener;
-import com.dianbin.latte.ui.launcher.LauncherHolderCreator;
-import com.dianbin.latte.ui.launcher.OnLauncherFinishTag;
-import com.dianbin.latte.ui.launcher.ScrollLauncherTag;
+import com.dianbin.latte_ui.launcher.ILauncherListener;
+import com.dianbin.latte_ui.launcher.LauncherHolderCreator;
+import com.dianbin.latte_ui.launcher.OnLauncherFinishTag;
+import com.dianbin.latte_ui.launcher.ScrollLauncherTag;
 import com.dianbin.latte.util.storage.LattePreference;
 
 import java.util.ArrayList;
