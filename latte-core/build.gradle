@@ -31,7 +31,6 @@ dependencies {
     androidTestApi 'com.android.support.test:runner:0.5'
     androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'
     testApi 'junit:junit:4.12'
-//    api project(':latte-ui')
     //Android Support包
     api 'com.android.support:support-v4:26.0.0'
     api 'com.android.support:design:26.0.0'

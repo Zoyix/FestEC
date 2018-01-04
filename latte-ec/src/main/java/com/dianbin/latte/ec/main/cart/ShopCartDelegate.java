@@ -16,6 +16,7 @@ import com.dianbin.latte.app.Latte;
 import com.dianbin.latte.delegates.bottom.BottomItemDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
+import com.dianbin.latte.ec.pay.FastPay;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
 import com.dianbin.latte_ui.recycle.MultipleItemEntity;
@@ -114,7 +115,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-
+        FastPay.create(this).beginPayDialog();
     }
 
     //创建订单，注意：和支付是没有关系的

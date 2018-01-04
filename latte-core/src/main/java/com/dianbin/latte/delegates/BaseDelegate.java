@@ -41,7 +41,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public void onAttach(Context context) {
         super.onAttach(context);
         DELEGATE.onAttach((Activity) context);
-        _mActivity=DELEGATE.getActivity();
+        _mActivity = DELEGATE.getActivity();
     }
 
     @Override
@@ -79,7 +79,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         return rootView;
     }
 
-    public final ProxyActivity getProxyActivity(){
+    public final ProxyActivity getProxyActivity() {
         return (ProxyActivity) _mActivity;
     }
 
@@ -115,7 +115,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         }
     }
 
-    public SupportFragmentDelegate getSupportDelegate(){
+    public SupportFragmentDelegate getSupportDelegate() {
         return DELEGATE;
     }
 
