@@ -12,13 +12,16 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.dianbin.latte.app.Latte;
 import com.dianbin.latte.delegates.bottom.BottomItemDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.ec.pay.FastPay;
+import com.dianbin.latte.ec.pay.IAlpayResultListener;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
+import com.dianbin.latte.util.log.LatteLogger;
 import com.dianbin.latte_ui.recycle.MultipleItemEntity;
 import com.joanzapata.iconify.widget.IconTextView;
 
@@ -33,7 +36,7 @@ import butterknife.OnClick;
  * Created by zhouyixin on 2017/12/31.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener,IAlpayResultListener {
 
     private ShopCartAdapter mAdapter = null;
     private double mTotalPrive = 0.00;
@@ -115,7 +118,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-        FastPay.create(this).beginPayDialog();
+        createOrder();
     }
 
     //创建订单，注意：和支付是没有关系的
@@ -136,6 +139,13 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                     @Override
                     public void onSuccess(String response) {
                         //进行具体的支付
+                        LatteLogger.d("ORDER");
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartDelegate.this)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
+
                     }
                 })
                 .build()
@@ -206,5 +216,30 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     public void onItemClick(double itemTotalPrice) {
         final double price = mAdapter.getTotalPrice();
         mTvTotalPrice.setText(String.valueOf(price));
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }
