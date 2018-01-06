@@ -1,6 +1,5 @@
 package com.dianbin.latte.ec.main.index;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -16,17 +15,22 @@ import com.dianbin.latte.delegates.bottom.BottomItemDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.ec.main.EcBottomDelegate;
-import com.dianbin.latte.net.RestClient;
-import com.dianbin.latte.net.callBack.ISuccess;
-import com.dianbin.latte.ui.recycle.BaseDecoration;
-import com.dianbin.latte.ui.recycle.MultipleFields;
-import com.dianbin.latte.ui.recycle.MultipleItemEntity;
-import com.dianbin.latte.ui.refresh.RefreshHandler;
+import com.dianbin.latte.net.RestCreator;
+import com.dianbin.latte.net.rx.RxRestClient;
+import com.dianbin.latte_ui.recycle.BaseDecoration;
+import com.dianbin.latte_ui.recycle.MultipleFields;
+import com.dianbin.latte_ui.recycle.MultipleItemEntity;
+import com.dianbin.latte_ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.util.ArrayList;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2017/12/13.
@@ -50,6 +54,71 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+//        onCallRxGet();
+//        onCallRxRxRestClient();
+    }
+
+    //TODO 测试方法，没啥软用
+    void onCallRxGet(){
+        final String url = "index.php";
+        final WeakHashMap<String,Object> params = new WeakHashMap<>();
+
+        final Observable<String> observable = RestCreator.getRxRestService().get(url,params);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    //TODO 测试方法，没啥软用X2
+    void onCallRxRxRestClient(){
+        final String url = "index.php";
+        RxRestClient.builder()
+                .url(url)
+                .build()
+                .get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     /**

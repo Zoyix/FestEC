@@ -1,6 +1,7 @@
 package com.dianbin.latte.ec.launcher;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
@@ -12,9 +13,9 @@ import com.dianbin.latte.app.IUserChecker;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
-import com.dianbin.latte.ui.launcher.ILauncherListener;
-import com.dianbin.latte.ui.launcher.OnLauncherFinishTag;
-import com.dianbin.latte.ui.launcher.ScrollLauncherTag;
+import com.dianbin.latte_ui.launcher.ILauncherListener;
+import com.dianbin.latte_ui.launcher.OnLauncherFinishTag;
+import com.dianbin.latte_ui.launcher.ScrollLauncherTag;
 import com.dianbin.latte.util.storage.LattePreference;
 import com.dianbin.latte.util.timer.BaseTimerTask;
 import com.dianbin.latte.util.timer.ITimerListener;
@@ -62,6 +63,11 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
     public Object setLayout() {
         return R.layout.delegate_launcher;
     }
@@ -74,7 +80,8 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     //判断是否显示滑动启动页
     private void checkIsShowScroll() {
         if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
-            start(new LauncherScrollDelegate(), SINGLETASK);
+            //TODO 为什么这用fragment的start就可以启动？和ExampleActivity里的问题对应
+            getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否已经登录
             AccountManager.checkAccount(new IUserChecker() {

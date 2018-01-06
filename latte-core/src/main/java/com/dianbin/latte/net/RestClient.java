@@ -29,6 +29,7 @@ public class RestClient {
     private final String URL;
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
+    //TODO 为什么RxJava下载不需要下面三个？
     private final String DOWNLOAD_DIR;
     private final String EXTENSION;
     private final String NAME;
