@@ -5,5 +5,6 @@ package com.dianbin.latte.ec.main.personal.List;
  */
 
 public class ListItemType {
-    public static final int ITEM_NORMAL = 2;
+    public static final int ITEM_NORMAL = 20;
+    public static final int ITEM_AVATAR = 21;
 }

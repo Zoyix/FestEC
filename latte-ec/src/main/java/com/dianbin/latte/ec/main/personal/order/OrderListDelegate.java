@@ -23,6 +23,9 @@ import butterknife.BindView;
  * Created by zhouyixin on 2018/1/6.
  */
 
+/**
+ * 订单fragment
+ */
 public class OrderListDelegate extends LatteDelegate {
 
     private String mType = null;
@@ -50,6 +53,7 @@ public class OrderListDelegate extends LatteDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        //TODO 有参数带上去不是应该用post么？
         RestClient.builder()
                 .loader(getContext())
                 .url("order_list.php")

@@ -15,6 +15,9 @@ import java.util.ArrayList;
  * Created by zhouyixin on 2018/1/6.
  */
 
+/**
+ * 订单数据解析器
+ */
 public class OrderListDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {

@@ -20,6 +20,9 @@ import java.util.List;
  * Created by zhouyixin on 2018/1/6.
  */
 
+/**
+ * 订单适配器
+ */
 public class OrderListAdapter extends MultipleRecyclerAdapter {
 
     private static final RequestOptions OPTIONS = new RequestOptions()
