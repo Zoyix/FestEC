@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.main.personal.List.ListBean;
+import com.dianbin.latte.ui.camera.CameraHandler;
 import com.dianbin.latte_ui.date.DateDialogUtil;
 
 /**
@@ -37,6 +38,7 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开始照相机或选择图片
+                DELEGATE.startCameraWithCheck();
                 break;
             case 2:
                 final LatteDelegate nameDelegate = bean.getDelegate();

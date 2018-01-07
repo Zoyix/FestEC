@@ -1,9 +1,11 @@
 package com.dianbin.latte.app;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.dianbin.latte.delegates.web.event.Event;
 import com.dianbin.latte.delegates.web.event.EventManage;
 import com.joanzapata.iconify.IconFontDescriptor;

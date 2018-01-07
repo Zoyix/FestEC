@@ -3,7 +3,7 @@ package com.dianbin.latte_ui.banner;
 import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.dianbin.latte.R;
+import com.dianbin.latte_ui.R;
 
 import java.util.ArrayList;
 

@@ -2,6 +2,7 @@ package com.dianbin.fastec.example;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.dianbin.latte.app.Latte;
 import com.dianbin.fastec.example.enent.TestEvent;
 import com.dianbin.latte.ec.database.DatabaseManager;
@@ -38,6 +39,8 @@ public class ExampleApp extends Application {
                 .withInterceptor(new AddCookieInterceptor())
                 .configure();
 
+        //AndroidUtilCode初始化
+        Utils.init(this);
         initStetho();
         DatabaseManager.getInstance().init(this);
     }
