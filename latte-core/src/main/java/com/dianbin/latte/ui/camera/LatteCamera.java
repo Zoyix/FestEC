@@ -13,6 +13,10 @@ import com.dianbin.latte.util.file.FileUtil;
  * 照相机调用类
  */
 public class LatteCamera {
+    /**
+     * 创建剪裁后图片存放的uri
+     * @return
+     */
     public static Uri createCropFile() {
         return Uri.parse(FileUtil.createFile("crop_image",
                 FileUtil.getFileNameByTime("IMG", "Jpg")).getPath());

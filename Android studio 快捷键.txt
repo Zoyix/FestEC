@@ -1,5 +1,9 @@
 http://seniorzhai.github.io/2015/02/05/AndroidStudio%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%B1%87%E6%80%BB/
 
+重启adb
+adb kill-server
+adb start-server
+
 
 提取局部变量：Ctrl+Alt+V
 

@@ -16,4 +16,4 @@ adb shell monkey -p com.lcns.fmrt.test -s 500 -v 10000
 
 ==便捷添加RecyclerView分割线使用  RecyclerView_Divider 依赖库
 
-==
+==PermissionsDispatcher权限请求依赖库，有个PermissionsDispatcher plugin 一健生成

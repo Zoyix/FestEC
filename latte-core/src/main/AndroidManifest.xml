@@ -28,5 +28,22 @@
         android:allowBackup="true"
         android:label="Latter"
         tools:replace="android:label"
-        android:supportsRtl="true" />
+        android:supportsRtl="true">
+
+        <!--图片剪裁Activity-->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.dianbin.latte.fireprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/yourfilename" />
+        </provider>
+    </application>
 </manifest>

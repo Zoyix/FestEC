@@ -13,10 +13,10 @@ import com.dianbin.latte.app.Latte;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
-import com.dianbin.latte_ui.recycle.MultipleFields;
-import com.dianbin.latte_ui.recycle.MultipleItemEntity;
-import com.dianbin.latte_ui.recycle.MultipleRecyclerAdapter;
-import com.dianbin.latte_ui.recycle.MultipleViewHolder;
+import com.dianbin.latte.ui.recycle.MultipleFields;
+import com.dianbin.latte.ui.recycle.MultipleItemEntity;
+import com.dianbin.latte.ui.recycle.MultipleRecyclerAdapter;
+import com.dianbin.latte.ui.recycle.MultipleViewHolder;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.List;

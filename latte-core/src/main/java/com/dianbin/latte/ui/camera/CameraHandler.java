@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
@@ -36,12 +37,14 @@ public class CameraHandler implements View.OnClickListener {
         DIALOG = new AlertDialog.Builder(delegate.getContext()).create();
     }
 
+    /**
+     * 启动相机或者相册的选择框，并注册点击事件
+     */
     void beginCameraDialog() {
         DIALOG.show();
         final Window window = DIALOG.getWindow();
         if (window != null) {
             window.setContentView(R.layout.dialog_camera_panel);
-            //TODO 改成TOP,把动画放慢10倍，发现上来还是从底部上来的，消失时没回到底部，所以100%p中的父布局到底指什么？13-8 12：00
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.anim_panel_up_from_bottom);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -65,6 +68,9 @@ public class CameraHandler implements View.OnClickListener {
         return FileUtil.getFileNameByTime("IMG", "jpg");
     }
 
+    /**
+     * 打开相机
+     */
     private void takePhoto() {
         final String currentPhoneName = getPhoneName();
         final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -73,20 +79,23 @@ public class CameraHandler implements View.OnClickListener {
 
         //兼容7.0及以上的写法
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //TODO 不是说从android 7.0开始，直接使用本地真实路径的Uri被认为是不安全的么？这种方式出来的uri也是封装过的？
+            //TODO 以后解决：既然uri可以通过解析得到真实路径，为什么要多此一举，哪里安全了？
             final ContentValues contentValues = new ContentValues(1);
             contentValues.put(MediaStore.Images.Media.DATA, tempFile.getPath());
             //MediaStore.Images.Media.EXTERNAL_CONTENT_URI : 存储在外部存储器（SD卡）上的图片文件的内容
-            //TODO 为什么要往内容提供器里加？
+            //uri:content://media/internal/images/media/229
+            //mUri:content://com.dianbin.latte.fireprovider/my_download/DCIM/Camera/IMG_20180108_062515.jpg
+            //TODO 以后解决：上面分别是这两种方法得出来的uri，为什么他们都可以用？只要是content：头的都可以么？
             final Uri uri = DELEGATE.getContext().getContentResolver()
-                    .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-            //TODO 程哥，真实路径一直有个疑问，难道目录加名字不是真实路径？和tempFile.getPath()有什么不同？
-            //TODO tempFile和realUri有什么区别
+                    .insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, contentValues);
+//            Uri mUri = FileProvider.getUriForFile(DELEGATE.getContext(),"com.dianbin.latte.fireprovider",tempFile);
+            //TODO 可以优化
+            //tempFile和realFile有什么区别? 没有区别
             //需要将Uri路径转化为真实路径
             final File realFile = FileUtils.getFileByPath(FileUtil.getRealFilePath(DELEGATE.getContext(), uri));
             final Uri realUri = Uri.fromFile(realFile);
             CameraImageBean.getInstance().setPath(realUri);
-            //TODO 为什么是uri？不是realUri？
+            //为什么是uri？不是realUri？ 因为直接使用本地真实路径的Uri被认为是不安全。
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         } else {
             final Uri fileUri = Uri.fromFile(tempFile);
@@ -96,11 +105,15 @@ public class CameraHandler implements View.OnClickListener {
         DELEGATE.startActivityForResult(intent, RequestCodes.TAKE_PHOTO);
     }
 
+    /**
+     * 打开相册
+     */
     private void pickPhoto() {
         final Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
+        //Intent.createChooser是每次都要选择不同的activity来处理
         DELEGATE.startActivityForResult(Intent.createChooser(intent, "选择获取图片的方式"), RequestCodes.PICK_PHOTO);
     }
 
@@ -108,12 +121,13 @@ public class CameraHandler implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.photodialog_btn_cancel) {
-            pickPhoto();
+
             DIALOG.cancel();
         } else if (id == R.id.photodialog_btn_take) {
             takePhoto();
             DIALOG.cancel();
         } else if (id == R.id.photodialog_btn_native) {
+            pickPhoto();
             DIALOG.cancel();
         }
 

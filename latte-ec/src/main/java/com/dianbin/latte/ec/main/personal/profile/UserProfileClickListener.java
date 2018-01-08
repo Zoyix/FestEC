@@ -2,16 +2,28 @@ package com.dianbin.latte.ec.main.personal.profile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.main.personal.List.ListBean;
-import com.dianbin.latte.ui.camera.CameraHandler;
-import com.dianbin.latte_ui.date.DateDialogUtil;
+import com.dianbin.latte.net.RestClient;
+import com.dianbin.latte.net.callBack.ISuccess;
+import com.dianbin.latte.ui.date.DateDialogUtil;
+import com.dianbin.latte.ui.loader.LatteLoader;
+import com.dianbin.latte.util.callback.CallbackManager;
+import com.dianbin.latte.util.callback.CallbackType;
+import com.dianbin.latte.util.callback.IGlobalCallback;
+import com.dianbin.latte.util.log.LatteLogger;
+
+import retrofit2.http.DELETE;
 
 /**
  * Created by zhouyixin on 2018/1/6.
@@ -38,6 +50,50 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开始照相机或选择图片
+                CallbackManager.getInstance()
+                        .addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
+                            @Override
+                            public void executeCallback(Uri args) {
+                                LatteLogger.d("ON_CROP", args);
+                                final ImageView avater = view.findViewById(R.id.img_arrow_avatar);
+                                Glide.with(DELEGATE.getContext())
+                                        .load(args)
+                                        .into(avater);
+
+                                //上传到服务器
+                                RestClient.builder()
+                                        .url("服务器地址")
+                                        .loader(DELEGATE.getContext())
+                                        .file(args.getPath())
+                                        .success(new ISuccess() {
+                                            @Override
+                                            public void onSuccess(String response) {
+                                                LatteLogger.d("ON_CROP_UPLOAD",response);
+                                                final String path = JSON.parseObject(response).getJSONObject("result")
+                                                        .getString("path");
+
+                                                //通知服务器更新信息
+                                                RestClient.builder()
+                                                        .url("user_profile.php")
+                                                        .params("avatar",path)
+                                                        .loader(DELEGATE.getContext())
+                                                        .success(new ISuccess() {
+                                                            @Override
+                                                            public void onSuccess(String response) {
+                                                                //获取更新后的用户信息，然后更新本地数据库
+                                                                //没有本地数据的APP，每次打开APP都请求API，获取信息
+                                                            }
+                                                        })
+                                                        .build()
+                                                        .post();
+
+                                            }
+                                        })
+                                        .build()
+                                        .upload();
+
+                            }
+                        });
                 DELEGATE.startCameraWithCheck();
                 break;
             case 2:
@@ -71,6 +127,11 @@ public class UserProfileClickListener extends SimpleClickListener {
         }
     }
 
+    /**
+     * 性别选择框
+     *
+     * @param listener
+     */
     private void getGenderDialog(DialogInterface.OnClickListener listener) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(DELEGATE.getContext());
         builder.setSingleChoiceItems(mGenders, 0, listener);

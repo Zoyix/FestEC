@@ -3,10 +3,9 @@ package com.dianbin.latte.ec.main.personal.order;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.dianbin.latte_ui.recycle.DataConverter;
-import com.dianbin.latte_ui.recycle.MultipleFields;
-import com.dianbin.latte_ui.recycle.MultipleItemEntity;
+import com.dianbin.latte.ui.recycle.DataConverter;
+import com.dianbin.latte.ui.recycle.MultipleFields;
+import com.dianbin.latte.ui.recycle.MultipleItemEntity;
 
 
 import java.util.ArrayList;

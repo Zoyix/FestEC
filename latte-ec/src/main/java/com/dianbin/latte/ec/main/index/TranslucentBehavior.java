@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.dianbin.latte.ec.R;
-import com.dianbin.latte_ui.recycle.RgbValue;
+import com.dianbin.latte.ui.recycle.RgbValue;
 
 
 /**
