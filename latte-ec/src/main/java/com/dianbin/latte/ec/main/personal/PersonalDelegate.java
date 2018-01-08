@@ -13,6 +13,7 @@ import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.ec.main.personal.List.ListAdapter;
 import com.dianbin.latte.ec.main.personal.List.ListBean;
 import com.dianbin.latte.ec.main.personal.List.ListItemType;
+import com.dianbin.latte.ec.main.personal.address.AddressDelegate;
 import com.dianbin.latte.ec.main.personal.order.OrderListDelegate;
 import com.dianbin.latte.ec.main.personal.profile.UserProfileDelegate;
 
@@ -67,6 +68,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
+                .setDelegate(new AddressDelegate())
                 .setText("收货地址")
                 .build();
 
@@ -86,5 +88,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }
