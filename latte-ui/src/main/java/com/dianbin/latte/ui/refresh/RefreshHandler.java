@@ -50,7 +50,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
      */
     private void refresh() {
         REFRESH_LAYOUT.setRefreshing(true);
-        //TODO 这个handler是什么？
+        //TODO 可以解决：这个handler是什么？
         Latte.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -61,7 +61,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
     }
 
     public void firstPage(String url) {
-        //TODO 设置了有什么用？
+        //TODO 可以解决：设置了有什么用？
         BEAN.setDelayed(1000);
         RestClient.builder()
                 .url(url)

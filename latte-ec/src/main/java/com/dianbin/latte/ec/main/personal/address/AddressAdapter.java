@@ -17,6 +17,9 @@ import java.util.List;
  * Created by zhouyixin on 2018/1/8.
  */
 
+/**
+ * 地址设置页适配器
+ */
 public class AddressAdapter extends MultipleRecyclerAdapter {
 
     protected AddressAdapter(List<MultipleItemEntity> data) {
@@ -39,6 +42,7 @@ public class AddressAdapter extends MultipleRecyclerAdapter {
                 final AppCompatTextView phoneText = holder.getView(R.id.tv_address_phone);
                 final AppCompatTextView addressText = holder.getView(R.id.tv_address_address);
                 final AppCompatTextView deleteTextView = holder.getView(R.id.tv_address_delete);
+
                 deleteTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

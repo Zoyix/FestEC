@@ -13,7 +13,7 @@ import android.net.Uri;
 public final class CameraImageBean {
     private Uri mPath = null;
 
-    //TODO 程哥，和静态内部类有什么不同
+    //TODO 问老师：和静态内部类有什么不同
 //    private static class Holder {
 //        private static final CameraImageBean INSTANCE = new CameraImageBean();
 //    }

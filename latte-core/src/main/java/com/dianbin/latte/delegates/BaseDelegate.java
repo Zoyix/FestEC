@@ -27,7 +27,6 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 public abstract class BaseDelegate extends Fragment implements ISupportFragment {
 
     //TODO 看看新版本的Fragmentation是怎么用的
-    //TODO DELEGATE是什么？为什么能拿出FragmentActivity?FragmentActivity又是什么？
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
     protected FragmentActivity _mActivity = null;
     @SuppressWarnings("SpellCheckingInspection")

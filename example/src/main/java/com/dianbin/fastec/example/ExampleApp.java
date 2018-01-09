@@ -12,6 +12,8 @@ import com.dianbin.latte.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by Administrator on 2017/11/13.
  */
@@ -20,6 +22,8 @@ public class ExampleApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //TODO 以后解决，问老师，程哥，可以优化，试试, 有啥用, 可以解决，有时间看,
 
 
         //我的电脑无线Ip：http://192.168.1.6:8080/RestServer/api/
@@ -41,8 +45,13 @@ public class ExampleApp extends Application {
 
         //AndroidUtilCode初始化
         Utils.init(this);
+
         initStetho();
         DatabaseManager.getInstance().init(this);
+
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     private  void  initStetho(){

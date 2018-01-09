@@ -21,6 +21,9 @@ import butterknife.BindView;
  * Created by zhouyixin on 2018/1/8.
  */
 
+/**
+ * 地址设置页
+ */
 public class AddressDelegate extends LatteDelegate implements ISuccess {
     @BindView(R2.id.rv_address)
     RecyclerView mRecyclerView = null;

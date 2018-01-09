@@ -15,6 +15,7 @@ import com.dianbin.latte.ec.sign.SignInDelegate;
 import com.dianbin.latte.ui.launcher.ILauncherListener;
 import com.dianbin.latte.ui.launcher.OnLauncherFinishTag;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 //TODO okHttp是不是本身就有这样的机制，网络请求在新线程里做，返回的回调方法在主线程里做？
@@ -32,6 +33,21 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         Latte.getConfigurator().withActivity(this);
         //让状态栏隐藏
         StatusBarCompat.translucentStatusBar(this, true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //TODO 为什么要加，开发文档中没要求
+        //极光推送的生命周期
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //极光推送的生命周期
+        JPushInterface.onResume(this);
     }
 
     @Override
