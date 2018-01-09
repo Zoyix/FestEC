@@ -28,6 +28,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //TODO 以后解决：为什么加这个注解？
+    //noinspection GradleCompatible
     androidTestApi 'com.android.support.test:runner:0.5'
     androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'
     testApi 'junit:junit:4.12'

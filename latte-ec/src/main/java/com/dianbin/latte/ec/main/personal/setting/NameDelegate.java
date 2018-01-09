@@ -11,6 +11,9 @@ import com.dianbin.latte.ec.R;
  * Created by zhouyixin on 2018/1/6.
  */
 
+/**
+ * 姓名设置的fragment
+ */
 public class NameDelegate extends LatteDelegate {
     @Override
     public Object setLayout() {

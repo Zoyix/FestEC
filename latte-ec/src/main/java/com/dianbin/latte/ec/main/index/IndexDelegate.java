@@ -17,10 +17,8 @@ import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.ec.main.EcBottomDelegate;
 import com.dianbin.latte.net.RestCreator;
 import com.dianbin.latte.net.rx.RxRestClient;
-import com.dianbin.latte_ui.recycle.BaseDecoration;
-import com.dianbin.latte_ui.recycle.MultipleFields;
-import com.dianbin.latte_ui.recycle.MultipleItemEntity;
-import com.dianbin.latte_ui.refresh.RefreshHandler;
+import com.dianbin.latte.ui.recycle.BaseDecoration;
+import com.dianbin.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.WeakHashMap;

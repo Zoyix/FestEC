@@ -11,7 +11,7 @@ import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.net.RestClient;
 import com.dianbin.latte.net.callBack.ISuccess;
-import com.dianbin.latte_ui.recycle.MultipleItemEntity;
+import com.dianbin.latte.ui.recycle.MultipleItemEntity;
 
 import java.util.ArrayList;
 

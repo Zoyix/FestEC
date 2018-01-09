@@ -3,16 +3,15 @@ package com.dianbin.latte.ec.main.personal.order;
 import android.annotation.SuppressLint;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.dianbin.latte.ec.R;
-import com.dianbin.latte_ui.recycle.MultipleFields;
-import com.dianbin.latte_ui.recycle.MultipleItemEntity;
-import com.dianbin.latte_ui.recycle.MultipleRecyclerAdapter;
-import com.dianbin.latte_ui.recycle.MultipleViewHolder;
+import com.dianbin.latte.ui.recycle.MultipleFields;
+import com.dianbin.latte.ui.recycle.MultipleItemEntity;
+import com.dianbin.latte.ui.recycle.MultipleRecyclerAdapter;
+import com.dianbin.latte.ui.recycle.MultipleViewHolder;
 
 import java.util.List;
 
