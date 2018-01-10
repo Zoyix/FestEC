@@ -5,5 +5,16 @@ package com.dianbin.latte.util.callback;
  */
 
 public enum CallbackType {
-    ON_CROP
+    /**
+     * 剪裁成功回调
+     */
+    ON_CROP,
+    /**
+     * 打开推送
+     */
+    TAG_OPEN_PUSH,
+    /**
+     * 关闭推送
+     */
+    TAG_STOP_PUSH
 }

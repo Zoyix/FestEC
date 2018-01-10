@@ -1,5 +1,7 @@
 package com.dianbin.latte.util.callback;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by Administrator on 2018/1/8.
  */
@@ -7,6 +9,6 @@ package com.dianbin.latte.util.callback;
 
 public interface IGlobalCallback<T> {
 
-    void executeCallback(T args);
+    void executeCallback(@NonNull T args);
 
 }

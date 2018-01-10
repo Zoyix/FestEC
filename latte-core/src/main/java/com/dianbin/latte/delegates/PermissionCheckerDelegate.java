@@ -81,17 +81,25 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         PermissionCheckerDelegatePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
+    /**
+     * 活动启动后的回调
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
+                //拍照后回调
                 case RequestCodes.TAKE_PHOTO:
                     final Uri resultUri = CameraImageBean.getInstance().getPath();
                     UCrop.of(resultUri, resultUri)
                             .withMaxResultSize(400, 400)
                             .start(getContext(), this);
                     break;
+                //选择照片后回调
                 case RequestCodes.PICK_PHOTO:
                     if (data != null) {
                         final Uri pickPath = data.getData();
@@ -104,15 +112,18 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
 
                     }
                     break;
+                //剪裁成功后回调
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
+                    //调用剪裁后的接口
                     @SuppressWarnings("unchecked")
                     final IGlobalCallback<Uri> callback = CallbackManager.getInstance().getCallback(CallbackType.ON_CROP);
                     if (callback != null) {
                         callback.executeCallback(cropUri);
                     }
                     break;
+                //剪裁错误后回调
                 case RequestCodes.CROP_ERROR:
                     Toast.makeText(getContext(), "剪裁出错", Toast.LENGTH_SHORT).show();
                     break;

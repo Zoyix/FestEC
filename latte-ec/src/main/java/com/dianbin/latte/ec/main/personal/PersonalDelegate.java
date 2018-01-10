@@ -16,6 +16,7 @@ import com.dianbin.latte.ec.main.personal.List.ListItemType;
 import com.dianbin.latte.ec.main.personal.address.AddressDelegate;
 import com.dianbin.latte.ec.main.personal.order.OrderListDelegate;
 import com.dianbin.latte.ec.main.personal.profile.UserProfileDelegate;
+import com.dianbin.latte.ec.main.personal.setting.SettingsDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
 
