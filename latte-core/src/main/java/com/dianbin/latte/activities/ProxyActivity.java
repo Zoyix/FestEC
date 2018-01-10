@@ -22,7 +22,6 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  */
 
 public abstract class ProxyActivity extends AppCompatActivity implements ISupportActivity {
-    //TODO DELEGATE是什么？
     private final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
 
     public abstract LatteDelegate setRootDelegate();

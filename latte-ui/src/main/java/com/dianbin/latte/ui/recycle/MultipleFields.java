@@ -1,4 +1,4 @@
-package com.dianbin.latte_ui.recycle;
+package com.dianbin.latte.ui.recycle;
 
 /**
  * Created by Administrator on 2017/12/19.
@@ -6,6 +6,7 @@ package com.dianbin.latte_ui.recycle;
 
 public enum MultipleFields {
     ITEM_TYPE,
+    TITLE,
     TEXT,
     IMAGE_URL,
     BANNERS,

@@ -1,4 +1,4 @@
-package com.dianbin.latte_ui.recycle;
+package com.dianbin.latte.ui.recycle;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -11,8 +11,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.dianbin.latte.R;
-import com.dianbin.latte_ui.banner.BannerCreator;
+import com.dianbin.latte.ui.R;
+import com.dianbin.latte.ui.banner.BannerCreator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -23,7 +23,6 @@ public class Router {
 
     }
 
-    //TODO 这里为啥加static？
     private static class Holder {
         private static final Router INSTANCE = new Router();
     }

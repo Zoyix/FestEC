@@ -34,9 +34,9 @@ git reset HEAD readme.txt 把暂存区的修改回退到工作区
 
 远程的。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
 
-git remote add origin git@github.com:michaelliao/learngit.git  把本地仓库与远程库关联（SSH法）
+git remote add origin git@github.com:Zoyix/FestEC.git  把本地仓库与远程库关联（SSH法）
 
-git remote add origin http://github.com/michaelliao/learngit.git  把本地仓库与远程库关联（HTTPs法）
+git remote add origin http://github.com/Zoyix/FestEC.git  把本地仓库与远程库关联（HTTPs法）
 
 git push -u origin master  当前分支master推送到远程，加上了-u参数，Git还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令 git push origin master
 

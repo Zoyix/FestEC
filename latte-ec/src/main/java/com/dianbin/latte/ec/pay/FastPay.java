@@ -54,6 +54,7 @@ public class FastPay implements View.OnClickListener {
             //设置属性
             final WindowManager.LayoutParams params = window.getAttributes();
             params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            //让该window后所有的东西都成暗淡（dim）
             params.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
             window.setAttributes(params);
 
@@ -101,6 +102,7 @@ public class FastPay implements View.OnClickListener {
         int id = v.getId();
         if (id == R.id.btn_dialog_pay_alpay) {
             alpay(mOrderID);
+            mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_wechat) {
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
