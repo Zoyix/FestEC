@@ -73,7 +73,7 @@ public class StarLayout extends LinearLayoutCompat implements View.OnClickListen
         return count;
     }
 
-    private void selecStar(int count) {
+    private void selectStar(int count) {
         for (int i = 0; i <= count; i++) {
             final IconTextView star = STARS.get(i);
             star.setText(ICON_SELECTED);
@@ -100,7 +100,7 @@ public class StarLayout extends LinearLayoutCompat implements View.OnClickListen
         //获取点击状态
         final boolean isSelect = (boolean) star.getTag(R.id.star_is_select);
         if (!isSelect) {
-            selecStar(count);
+            selectStar(count);
         } else {
             unSelectStar(count);
         }
