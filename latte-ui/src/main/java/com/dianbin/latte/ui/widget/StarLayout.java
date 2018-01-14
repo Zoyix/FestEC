@@ -1,0 +1,109 @@
+package com.dianbin.latte.ui.widget;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.dianbin.latte.ui.R;
+import com.joanzapata.iconify.widget.IconTextView;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Administrator on 2018/1/10.
+ */
+
+/**
+ * 评星自定义控件
+ */
+public class StarLayout extends LinearLayoutCompat implements View.OnClickListener {
+
+    private static final CharSequence ICON_UN_SELECT = "{fa-star-o}";
+    private static final CharSequence ICON_SELECTED = "{fa-star}";
+    private static final int STAR_TOTAL_COUNT = 5;
+    private static final ArrayList<IconTextView> STARS = new ArrayList<>();
+
+    public StarLayout(Context context) {
+        this(context, null);
+    }
+
+    public StarLayout(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public StarLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initStarIcon();
+    }
+
+    private void initStarIcon() {
+        for (int i = 0; i < STAR_TOTAL_COUNT; i++) {
+            final IconTextView star = new IconTextView(getContext());
+            star.setGravity(Gravity.CENTER);
+            final LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            //TODO 宽又不是0dp
+            lp.weight = 1;
+            star.setLayoutParams(lp);
+            star.setText(ICON_UN_SELECT);
+            star.setTag(R.id.star_count, i);
+            star.setTag(R.id.star_is_select, false);
+            star.setOnClickListener(this);
+            STARS.add(star);
+            this.addView(star);
+        }
+    }
+
+    /**
+     * 返回选中的星星的个数
+     * @return
+     */
+    public int getStarCount() {
+        int count = 0;
+        for (int i = 0; i < STAR_TOTAL_COUNT; i++) {
+            final IconTextView star = STARS.get(i);
+            final boolean isSelect = (boolean) star.getTag(R.id.star_is_select);
+            if (isSelect) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void selectStar(int count) {
+        for (int i = 0; i <= count; i++) {
+            final IconTextView star = STARS.get(i);
+            star.setText(ICON_SELECTED);
+            star.setTextColor(Color.RED);
+            star.setTag(R.id.star_is_select, true);
+        }
+    }
+
+    private void unSelectStar(int count) {
+        //与视频里不同，1颗星代表最差
+        for (int i = count + 1; i < STAR_TOTAL_COUNT; i++) {
+            final IconTextView star = STARS.get(i);
+            star.setText(ICON_UN_SELECT);
+            star.setTextColor(Color.GRAY);
+            star.setTag(R.id.star_is_select, false);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        final IconTextView star = (IconTextView) v;
+        //获取是第几个星星
+        final int count = (int) star.getTag(R.id.star_count);
+        //获取点击状态
+        final boolean isSelect = (boolean) star.getTag(R.id.star_is_select);
+        if (!isSelect) {
+            selectStar(count);
+        } else {
+            unSelectStar(count);
+        }
+
+    }
+}
