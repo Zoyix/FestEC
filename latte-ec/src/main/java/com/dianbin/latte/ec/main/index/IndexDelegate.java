@@ -1,6 +1,7 @@
 package com.dianbin.latte.ec.main.index;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,11 +20,15 @@ import com.dianbin.latte.net.RestCreator;
 import com.dianbin.latte.net.rx.RxRestClient;
 import com.dianbin.latte.ui.recycle.BaseDecoration;
 import com.dianbin.latte.ui.refresh.RefreshHandler;
+import com.dianbin.latte.util.callback.CallbackManager;
+import com.dianbin.latte.util.callback.CallbackType;
+import com.dianbin.latte.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.WeakHashMap;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -49,11 +54,23 @@ public class IndexDelegate extends BottomItemDelegate {
 
     private RefreshHandler mRefreshHandler = null;
 
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode(){
+        startScanWithCheck(this.getParentDelegate());
+    }
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
 //        onCallRxGet();
 //        onCallRxRxRestClient();
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@NonNull String args) {
+                        Toast.makeText(getContext(), "得到的二维码是："+args, Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     //TODO 测试方法，没啥软用

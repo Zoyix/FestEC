@@ -8,6 +8,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dianbin.latte.app.ConfigKeys;
+import com.dianbin.latte.app.Latte;
 import com.dianbin.latte.delegates.LatteDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
@@ -44,8 +46,9 @@ public class SignInDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
         if (checkFrom()) {
+            String baseUrl = (String) Latte.getConfigurations().get(ConfigKeys.API_HOST);
             RestClient.builder()
-                    .url("http://10.41.69.60:8080/RestServer/api/user_profile.php")
+                    .url(baseUrl+"user_profile.php")
                     .params("email", mEmail.toString())
                     .params("password", mPassword.toString())
                     .success(new ISuccess() {

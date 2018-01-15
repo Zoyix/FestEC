@@ -26,4 +26,6 @@ adb shell monkey -p com.lcns.fmrt.test -s 500 -v 10000
 
 ==自定义view和viewGroup
 
+==barcodescanner 二维码zBar开源库
+
 ==
