@@ -75,8 +75,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
 //                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
                 //startWithPop是在start的同时，把上一个元素彻底清除掉
                 //TODO 之前好像也没清除掉
-//                getSupportDelegate().startWithPop(new EcBottomDelegate());
-                getSupportDelegate().start(new EcBottomDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
 //                Toast.makeText(this, "启动结束，没登录", Toast.LENGTH_LONG).show();
