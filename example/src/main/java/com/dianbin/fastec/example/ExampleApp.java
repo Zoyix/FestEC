@@ -1,10 +1,13 @@
 package com.dianbin.fastec.example;
 
 import android.app.Application;
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.Utils;
+import com.dianbin.fastec.example.enent.ShareEvent;
 import com.dianbin.latte.app.Latte;
 import com.dianbin.fastec.example.enent.TestEvent;
 import com.dianbin.latte.ec.database.DatabaseManager;
@@ -16,6 +19,7 @@ import com.dianbin.latte.util.callback.CallbackType;
 import com.dianbin.latte.util.callback.IGlobalCallback;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.mob.MobSDK;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -41,6 +45,7 @@ public class ExampleApp extends Application {
                 .withWeChatAppSecret("a0560f75335b06e3ebea70f29ff219bf")
                 .withJavascriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
+                .withWebEvent("share", new ShareEvent())
                 //TODO 为什么加斜杠，它又不拼接
                 .withWebHost("https://www.baidu.com/")
                 //添加Cookie同步拦截器
@@ -56,6 +61,9 @@ public class ExampleApp extends Application {
         //开启极光推送
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+
+        //一键分享初始化
+        MobSDK.init(this);
 
         //设置推送的回调接口（设置里开关推送）
         CallbackManager.getInstance()
@@ -77,6 +85,12 @@ public class ExampleApp extends Application {
                     }
                 });
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private void initStetho() {

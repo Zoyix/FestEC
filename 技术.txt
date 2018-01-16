@@ -28,4 +28,8 @@ adb shell monkey -p com.lcns.fmrt.test -s 500 -v 10000
 
 ==barcodescanner 二维码zBar开源库
 
+==APK简单优化
+
+==Mob的 ShareSDK一键分享集成
+
 ==

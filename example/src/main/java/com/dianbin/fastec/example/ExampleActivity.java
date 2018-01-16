@@ -59,7 +59,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     public void onSignInSuccess() {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
         //TODO 为什么要用Activity的start启动？
-        getSupportDelegate().startWithPop(new EcBottomDelegate());
+        getSupportDelegate().start(new EcBottomDelegate());
     }
 
     @Override
