@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="商品详情" />
+<!--如果希望拖动过程中状态栏是透明的，可以在CollapsingToolbarLayout中加
+app:statusBarScrim=”@android:color/transparent”，并且在onCreate中调用
+getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+将状态栏设置为透明就好了-->
 
 
-</LinearLayout>
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    这个布局行为和AppBarLayout配合，不会使内容遮盖Appbar。参考第一行代码 p438-->
+
+</RelativeLayout>
