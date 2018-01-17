@@ -16,6 +16,7 @@ import com.dianbin.latte.delegates.bottom.BottomItemDelegate;
 import com.dianbin.latte.ec.R;
 import com.dianbin.latte.ec.R2;
 import com.dianbin.latte.ec.main.EcBottomDelegate;
+import com.dianbin.latte.ec.main.index.search.SearchDelegate;
 import com.dianbin.latte.net.RestCreator;
 import com.dianbin.latte.net.rx.RxRestClient;
 import com.dianbin.latte.ui.recycle.BaseDecoration;
@@ -39,7 +40,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Administrator on 2017/12/13.
  */
 
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
@@ -55,7 +56,7 @@ public class IndexDelegate extends BottomItemDelegate {
     private RefreshHandler mRefreshHandler = null;
 
     @OnClick(R2.id.icon_index_scan)
-    void onClickScanQrCode(){
+    void onClickScanQrCode() {
         startScanWithCheck(this.getParentDelegate());
     }
 
@@ -68,23 +69,25 @@ public class IndexDelegate extends BottomItemDelegate {
                 .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
                     @Override
                     public void executeCallback(@NonNull String args) {
-                        Toast.makeText(getContext(), "得到的二维码是："+args, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "得到的二维码是：" + args, Toast.LENGTH_LONG).show();
                     }
                 });
+        //输入框焦点改变时触发
+        mSearchView.setOnFocusChangeListener(this);
     }
 
     //TODO 测试方法，没啥软用
-    void onCallRxGet(){
+    void onCallRxGet() {
         final String url = "index.php";
-        final WeakHashMap<String,Object> params = new WeakHashMap<>();
+        final WeakHashMap<String, Object> params = new WeakHashMap<>();
 
-        final Observable<String> observable = RestCreator.getRxRestService().get(url,params);
+        final Observable<String> observable = RestCreator.getRxRestService().get(url, params);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        
+
                     }
 
                     @Override
@@ -105,7 +108,7 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
     //TODO 测试方法，没啥软用X2
-    void onCallRxRxRestClient(){
+    void onCallRxRxRestClient() {
         final String url = "index.php";
         RxRestClient.builder()
                 .url(url)
@@ -172,4 +175,12 @@ public class IndexDelegate extends BottomItemDelegate {
     public Object setLayout() {
         return R.layout.delegate_index;
     }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
+    }
+
 }
