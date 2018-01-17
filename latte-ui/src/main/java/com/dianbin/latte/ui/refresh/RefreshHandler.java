@@ -19,7 +19,7 @@ import com.dianbin.latte.ui.recycle.DataConverter;
 /**
  * 刷新助手，实现下拉刷新的方法，和具体页面的请求方法
  */
-public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,BaseQuickAdapter.RequestLoadMoreListener{
+public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
     private final SwipeRefreshLayout REFRESH_LAYOUT;
     private final PagingBean BEAN;
     private final RecyclerView RECYCLEVIEW;
@@ -27,11 +27,10 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
     private final DataConverter CONVERTER;
 
     /**
-     *
      * @param swipeRefreshLayout 下拉刷新的布局
-     * @param recyclerView 要被设置适配器的RecyclerView
+     * @param recyclerView       要被设置适配器的RecyclerView
      * @param converter
-     * @param bean  //TODO 这个类用来干嘛？？没有被使用？
+     * @param bean               //TODO 这个类用来干嘛？？没有被使用？
      */
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout, RecyclerView recyclerView, DataConverter converter, PagingBean bean) {
         this.REFRESH_LAYOUT = swipeRefreshLayout;
@@ -74,13 +73,46 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
                         //设置Adapter
                         mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
                         //设置上拉加载
-                        mAdapter.setOnLoadMoreListener(RefreshHandler.this,RECYCLEVIEW);
+                        mAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLEVIEW);
                         RECYCLEVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
                     }
                 })
                 .build()
                 .get();
+    }
+
+    private void paging(final String url) {
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount = BEAN.getCurrentCount();
+        final int total = BEAN.getTotal();
+        final int index = BEAN.getPageIndex();
+
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+            mAdapter.loadMoreEnd(true);
+        }else {
+            Latte.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            //TODO 可以解决，为什么有些是在url后面拼接参数，有些是以参数的形式传入params
+                            .url(url+index)
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    //累加数量
+                                    BEAN.setCurrentCount(mAdapter.getData().size());
+                                    //上拉加载完成
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+                }
+            },1000);
+        }
     }
 
     @Override
@@ -90,6 +122,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
 
     @Override
     public void onLoadMoreRequested() {
-
+        paging("refresh.php?index=");
     }
 }

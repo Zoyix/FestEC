@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.dianbin.latte.ui.camera.CameraImageBean;
 import com.dianbin.latte.ui.camera.LatteCamera;
 import com.dianbin.latte.ui.camera.RequestCodes;
+import com.dianbin.latte.ui.scanner.ScannerDelegate;
 import com.dianbin.latte.util.callback.CallbackManager;
 import com.dianbin.latte.util.callback.CallbackType;
 import com.dianbin.latte.util.callback.IGlobalCallback;
@@ -41,6 +42,19 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCameraWithCheck(this);
     }
+
+    //TODO 不知道这里要不要写其它的了？
+    //扫描二维码（不直接调用）
+    @NeedsPermission({Manifest.permission.CAMERA})
+    void startScan(BaseDelegate delegate){
+        //TODO 可以解决 这里为什么用startForResult？
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(),RequestCodes.SCAN);
+    }
+
+    public void startScanWithCheck(BaseDelegate delegate){
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithCheck(this,delegate);
+    }
+
 
     @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,})
     void onCameraDenied() {

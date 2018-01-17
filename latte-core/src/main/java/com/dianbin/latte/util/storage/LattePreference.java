@@ -70,6 +70,7 @@ public final class LattePreference {
                 .getBoolean(key, false);
     }
 
+    //往preference加键值对
     public static void addCustomAppProfile(String key, String val) {
         getAppPreference()
                 .edit()
