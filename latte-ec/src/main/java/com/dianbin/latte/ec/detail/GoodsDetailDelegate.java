@@ -1,5 +1,6 @@
 package com.dianbin.latte.ec.detail;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -42,10 +45,10 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
 
     //    @BindView(R2.id.goods_detail_toolbar)
 //    Toolbar mToolbar = null;
-//    @BindView(R2.id.tab_layout)
-//    TabLayout mTabLayout = null;
-//    @BindView(R2.id.view_pager)
-//    ViewPager mViewPager = null;
+    @BindView(R2.id.tab_layout)
+    TabLayout mTabLayout = null;
+    @BindView(R2.id.view_pager)
+    ViewPager mViewPager = null;
     @BindView(R2.id.detail_banner)
     ConvenientBanner<String> mBanner = null;
     @BindView(R2.id.collapsing_toolbar_detail)
@@ -95,8 +98,39 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
         mCollapsingToolbarLayout.setContentScrimColor(Color.WHITE);
         mAppBar.addOnOffsetChangedListener(this);
         initData();
+        initTabLayout();
     }
 
+    /**
+     *  初始化ViewPager
+     * @param data
+     */
+    private void initPager(JSONObject data) {
+        final PagerAdapter adapter = new TabPagerAdapter(getFragmentManager(), data);
+        mViewPager.setAdapter(adapter);
+    }
+
+
+    /**
+     * 初始化商品详情分类栏
+     */
+    private void initTabLayout() {
+        //去掉好像没事，可能内部已经做了平均
+        //表示tab是平均分开的，不会挤在一起
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        //下划线的颜色
+        mTabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.app_main));
+        //TODO ColorStateList是啥？
+        mTabLayout.setTabTextColors(ColorStateList.valueOf(Color.BLACK));
+        mTabLayout.setBackgroundColor(Color.WHITE);
+        //为什么设置？ 应该是把viewPager和tabLayout关联起来
+        mTabLayout.setupWithViewPager(mViewPager);
+
+    }
+
+    /**
+     * 初始化数据
+     */
     private void initData() {
         RestClient.builder()
                 .url("goods_detail.php")
@@ -107,6 +141,8 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
                     public void onSuccess(String response) {
                         final JSONObject data = JSON.parseObject(response).getJSONObject("data");
                         initBanner(data);
+                        initGoodsInfo(data);
+                        initPager(data);
                     }
                 })
                 .build()
@@ -115,7 +151,18 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
     }
 
     /**
+     * 初始化商品价格等信息
+     *
+     * @param data
+     */
+    private void initGoodsInfo(JSONObject data) {
+        final String goodsData = data.toJSONString();
+        getSupportDelegate().loadRootFragment(R.id.frame_goods_info, GoodsInfoDelegate.create(goodsData));
+    }
+
+    /**
      * 初始化商品详情轮播图
+     *
      * @param data
      */
     private void initBanner(JSONObject data) {
@@ -127,8 +174,8 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
         }
 
         mBanner
-                .setPages(new HolderCreator(),images)
-                .setPageIndicator(new int[]{R.drawable.dot_normal,R.drawable.dot_focus})
+                .setPages(new HolderCreator(), images)
+                .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setPageTransformer(new DefaultTransformer())
                 .startTurning(3000)

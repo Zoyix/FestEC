@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.AppCompatImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_rv_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:scaleType="fitXY">
+    <!--TODO 以后解决 这里不设android:fitsSystemWindows没事的吧-->
+    <!--android:fitsSystemWindows这个属性可以给任何view设置,只要设置了这个属性此view的所有padding属性失效. 只有在设置了透明状态栏(StatusBar)或者导航栏(NavigationBar)此属性才会生效-->
+    <!--android:scaleType是控制图片如何resized/moved来匹对ImageView的size。 FIT_XY / fitXY  把图片不按比例扩大/缩小到View的大小显示-->
+    <!--TODO 难道RecycleView每一个都有最大的大小的？这里宽高都设置为了match_parent，不是把整张图都设置满了么？-->
+
+</android.support.v7.widget.AppCompatImageView>

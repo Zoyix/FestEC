@@ -40,7 +40,7 @@
                         android:layout_below="@+id/detail_banner" />
                 </RelativeLayout>
 
-                <!--TODO app:layout_collapseMode="pin" 看第一行代码-->
+                <!--把Toolbal指定成pin，表示在折叠的过程中位置始终保持不变-->
                 <!--要放在下面-->
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/goods_detail_toolbar"
@@ -76,7 +76,8 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
-            <!--TODO 可以解决  这个是干啥的？-->
+            <!--TODO 学习下 TabLayout-->
+            <!--这是商品详情的分类栏，在AppBarLayout不会被遮盖-->
             <android.support.design.widget.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
