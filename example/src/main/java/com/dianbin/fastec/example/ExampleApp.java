@@ -34,12 +34,12 @@ public class ExampleApp extends Application {
 
         //TODO 以后解决，问老师，程哥，可以优化，试试, 有啥用, 可以解决，有时间看,
 
-        //我的电脑无线Ip：http://192.168.1.6:8080/RestServer/api/
+        //我的电脑无线Ip：http://192.168.1.3:8080/RestServer/api/
         //公司ip: http://10.41.69.60:8080/RestServer/api/
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://10.41.69.60:8080/RestServer/api/")
+                .withApiHost("http://192.168.1.3:8080/RestServer/api/")
                 .withInterceptor(new DebugIntercepter("text", R.raw.test))
                 .withWeChatAppId("wxfcdcecd9df8e0faa")
                 .withWeChatAppSecret("a0560f75335b06e3ebea70f29ff219bf")

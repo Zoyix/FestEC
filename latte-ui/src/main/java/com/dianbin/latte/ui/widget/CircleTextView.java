@@ -40,7 +40,8 @@ public class CircleTextView extends AppCompatTextView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         final int width = getMeasuredWidth();
-        //TODO 为什么是getMaxHeight？
+        //为什么是getMaxHeight？ 得到的就是 xml里的maxHeight属性
+        //TODO 问老师，为什么要取maxHeight来用？
         final int height = getMaxHeight();
         final int max = Math.max(width, height);
         setMeasuredDimension(max, max);
